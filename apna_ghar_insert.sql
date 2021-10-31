@@ -28,12 +28,14 @@ insert into security values('9827632415','Ravi','Kumar','9847638375','2016-11-01
 insert into security values('2435142351','Sharma','Ji','7375167251','2014-06-01','Night');
 insert into security values('5526517571','Nayak','A','7636453771','2017-03-05','Day');
 insert into depenedent values('168221720046','763676231429','Sahan','Shetty','2010-04-01','7465736245','M');
-insert into depenedent values('223641701075','763676231429','Raksha','Hemmige','2001-03-11','6237161571','F')
+insert into depenedent values('168221720036','763676231429','Shreya','Shetty','1950-04-10','7465736245','F');
+insert into depenedent values('223641701075','763676231429','Raksha','Hemmige','2001-03-11','6237161571','F');
 insert into depenedent values('699137916788','542155761651','Ramesh','G','2001-02-08','8762542161','M');
 insert into depenedent values('653227375868','109382652765','Suhas','K','2001-11-24','9863534643','M');
 insert into depenedent values('784134707754','109382652765','Mehul','Mehta','2004-05-03','9123534643','M');
 insert into depenedent values('591343435901','265342837265','Raghu','NV','2001-10-01','2753625711','M');
 insert into depenedent values('862278327098','782628762672','Sanjana','Atrey','2001-11-01','8726353171','M');
+insert into depenedent values('862278327099','782628762672','Sanjay','Atrey','1940-11-01','8726353171','M');
 insert into visitor values('4146987128','763676231429','Nihal','Shetty','Visit','8926781623','2021-11-19 11:36:01');
 insert into visitor values('4146987121','763676231429','Neha','Shetty','Visit','8926121623','2021-11-19 12:36:01');
 insert into visitor values('4142887121','542155761651','Roopak','M','Inspection','8926671623','2021-11-23 09:18:19');
@@ -49,7 +51,7 @@ insert into services values('1290892081',200.00,'Plumbing');
 insert into services values('1290892082',500.00,'Electrician');
 insert into services values('1290892083',600.00,'Internet');
 insert into services values('1290892084',200.00,'Car Wash');
-insert into employee values('7283681618','Ramesh','Appa','8767381681','2017-01-04','M','Day','1290892084')
+insert into employee values('7283681618','Ramesh','Appa','8767381681','2017-01-04','M','Day','1290892084');
 insert into employee values('7283681619','Suresh','Appa','8767381611','2015-11-14','M','Night','1290892083');
 insert into employee values('7283681281','Kanta','Bai','8767387652','2015-08-18','F','Day','1290892081');
 insert into employee values('7283681612','Ganesha','K','8767381612','2016-11-14','M','Day','1290892082');
