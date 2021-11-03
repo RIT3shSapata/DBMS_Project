@@ -1,7 +1,7 @@
 -- Creating the different users
 create user admin with password 'password1' apna_ghar;
-create resident admin with password 'password2' apna_ghar;
-create security admin with password 'password3' apna_ghar;
+create user resident with password 'password2' apna_ghar;
+create user security with password 'password3' apna_ghar;
 
 -- Read permissions to different users
 grant select on 
