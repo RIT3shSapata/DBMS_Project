@@ -16,6 +16,6 @@ select serviceID from services where cost<500 UNION select serviceID from employ
 --display firstname,lastname,shift,gender,type of service  and cost of the service given by an employee
 select Fname,Lname,shift,gender,type,cost from employee as e INNER JOIN services as s ON e.serviceID = s.serviceID;
 --display residents name and the number of dependents whose age is more 60
-select Fname,Lname,(select count(*) from depenedent where residentUID=r.Aadhar and (EXTRACT(year FROM age(now(),DOB)) :: int)>60) from resident as r where (select count(*) from depenedent where residentUID=r.Aadhar and (EXTRACT(year FROM age(now(),DOB)) :: int)>60)>0 ;
+select Fname,Lname,(select count(*) from dependent where residentUID=r.Aadhar and (EXTRACT(year FROM age(now(),DOB)) :: int)>60) from resident as r where (select count(*) from dependent where residentUID=r.Aadhar and (EXTRACT(year FROM age(now(),DOB)) :: int)>60)>0 ;
 --display name and the service availed by the resident
 select Fname,Lname,rrf.FlatID,type as service_availed from resident_avails_services as ras,resident as r,services as s,flat as f,resident_residesin_flat as rrf WHERE rrf.FlatID=f.FlatID AND rrf.ResidentUID=r.Aadhar AND ras.ResidentUID=r.Aadhar AND ras.serviceID=s.serviceID;

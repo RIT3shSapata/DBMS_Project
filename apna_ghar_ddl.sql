@@ -70,7 +70,7 @@ create table parking_slot
 );
 
 -- Creating dependent table 
-create table depenedent
+create table dependent
 (
 	Aadhar varchar(12) not null,
 	residentUID varchar(12) not null,

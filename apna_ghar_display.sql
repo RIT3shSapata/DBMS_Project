@@ -4,7 +4,7 @@ select * from security;
 select * from employee;
 select * from flat;
 select * from parking_slot;
-SELECT * FROM depenedent;
+SELECT * FROM dependent;
 SELECT * FROM visitor;
 SELECT * FROM complaints;
 SELECT * FROM resident_residesin_flat;
