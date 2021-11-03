@@ -1,3 +1,5 @@
+\c apna_ghar
+
 -- Revoking Admin permissions
 revoke select,insert,update on resident from admin;
 revoke select,insert,update on security from admin;
