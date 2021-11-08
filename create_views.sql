@@ -1,10 +1,12 @@
+\c apna_ghar
+
 -- Creating Views for Resident
 create view resident_display 
 as select * 
 from resident;
 
 create view resident_update 
-as update fname,lname,phone,pet_info 
+as select fname,lname,phone,pet_info 
 from resident;
 
 
@@ -14,7 +16,7 @@ as select *
 from security;
 
 create view security_update 
-as update fname,lname,phone 
+as select fname,lname,phone 
 from security;
 
 
@@ -30,7 +32,7 @@ as select *
 from employee;
 
 create view employee_update 
-as update fname,lname,phone 
+as select fname,lname,phone 
 from employee;
 
 
@@ -46,7 +48,7 @@ as select *
 from parking_slot;
 
 create view parking_slot_update 
-as update vehicle_type 
+as select vehicle_type 
 from parking_slot;
 
 
@@ -56,7 +58,7 @@ as select *
 from dependent;
 
 create view dependent_update 
-as update fname,lname,phone 
+as select fname,lname,phone 
 from dependent;
 
 
@@ -66,22 +68,22 @@ as select *
 from visitor;
 
 create view visitor_insert 
-as insert visitorID,ResidentUID,fname,lname,purpose,phonenumber,time_of_entry 
+as select visitorID,ResidentUID,fname,lname,purpose,phonenumber,time_of_entry 
 from visitor;
 
 create view visitor_update 
-as update time_of_exit 
+as select time_of_exit 
 from visitor;
 
 
 -- Creating Views for complaint 
 create view complaint_display 
 as select * 
-from complaint;
+from complaints;
 
 create view complaint_insert 
-as insert complaintID,ResidentUID,Complain,date 
-from complaint;
+as select complaintID,ResidentUID,Complain,date 
+from complaints;
 
 
 -- Creating Views for resident_residesin_flat 
@@ -90,11 +92,11 @@ as select *
 from resident_residesin_flat;
 
 create view resident_residesin_flat_insert 
-as insert ResidentUID,FlatID,rent_owned 
+as select ResidentUID,FlatID,rent_owned 
 from resident_residesin_flat;
 
 create view resident_residesin_flat_update 
-as update rent_owned 
+as select rent_owned 
 from resident_residesin_flat;
 
 
@@ -104,11 +106,11 @@ as select *
 from flat_has_security;
 
 create view flat_has_security_insert 
-as insert FlatID,securityID 
+as select FlatID,securityID 
 from flat_has_security;
 
 create view flat_has_security_update 
-as update FlatID 
+as select FlatID 
 from flat_has_security;
 
 
@@ -118,5 +120,5 @@ as select *
 from resident_avails_services;
 
 create view resident_avails_services_insert 
-as insert ResidentUID,serviceID 
+as select ResidentUID,serviceID 
 from resident_avails_services;
