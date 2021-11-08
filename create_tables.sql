@@ -94,6 +94,7 @@ create table visitor
 	purpose varchar(100),
 	phonenumber varchar(10), 
 	time_of_entry timestamp,
+	time_of_exit timestamp,
 	primary key(visitorID,ResidentUID),
 	foreign key(residentUID) references resident(Aadhar)
 );
