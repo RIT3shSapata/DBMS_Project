@@ -2,7 +2,7 @@
 
 -- Creating Views for Resident
 create view resident_display 
-as select * 
+as select fname,lname,phone,gender 
 from resident;
 
 create view resident_update 
@@ -12,7 +12,7 @@ from resident;
 
 -- Creating Views for Security
 create view security_display 
-as select * 
+as select fname,lname,phone,shift 
 from security;
 
 create view security_update 
@@ -20,15 +20,9 @@ as select fname,lname,phone
 from security;
 
 
--- Creating Views for Services
-create view services_display 
-as select * 
-from services;
-
-
 -- Creating Views for Employee
 create view employee_display 
-as select * 
+as select fname,lname,phone,gender,shift 
 from employee;
 
 create view employee_update 
@@ -54,7 +48,7 @@ from parking_slot;
 
 -- Creating Views for dependent
 create view dependent_display 
-as select * 
+as select fname,lname,phone,gender,dob,Aadhar
 from dependent;
 
 create view dependent_update 
@@ -78,47 +72,10 @@ from visitor;
 
 -- Creating Views for complaint 
 create view complaint_display 
-as select * 
+as select residentUID,Complain,date 
 from complaints;
 
 create view complaint_insert 
 as select complaintID,ResidentUID,Complain,date 
 from complaints;
 
-
--- Creating Views for resident_residesin_flat 
-create view resident_residesin_flat_display 
-as select * 
-from resident_residesin_flat;
-
-create view resident_residesin_flat_insert 
-as select ResidentUID,FlatID,rent_owned 
-from resident_residesin_flat;
-
-create view resident_residesin_flat_update 
-as select rent_owned 
-from resident_residesin_flat;
-
-
--- Creating Views for flat_has_security 
-create view flat_has_security_display 
-as select * 
-from flat_has_security;
-
-create view flat_has_security_insert 
-as select FlatID,securityID 
-from flat_has_security;
-
-create view flat_has_security_update 
-as select FlatID 
-from flat_has_security;
-
-
--- Creating Views for resident_avails_services
-create view resident_avails_services_display 
-as select * 
-from resident_avails_services;
-
-create view resident_avails_services_insert 
-as select ResidentUID,serviceID 
-from resident_avails_services;

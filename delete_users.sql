@@ -15,14 +15,21 @@ revoke select,insert,update on resident_residesin_flat from admin;
 revoke select,insert,update on resident_avails_services from admin;
 
 -- Revoking resident permissions
-revoke select,update on resident from resident;
-revoke select on services from resident;
-revoke select,update on dependent from resident;
-revoke select on visitor from resident;
-revoke select,insert on complaints from resident;
+revoke select on resident from resident;
+revoke update on resident_update from resident;
+revoke select on security_display from resident;
+revoke select on services from  resident;
+revoke select on employee_display from resident;
+revoke select on flat from  resident;
+revoke select on parking_slot_display from resident;
+revoke update on parking_slot_update from resident;
+revoke select on dependent_display from  resident;
+revoke select on visitor_display from resident;
+revoke select on complaint_display from resident;
+revoke insert on complaint_insert from resident;
+revoke select on resident_residesin_flat from resident;
 revoke select on flat_has_security from resident;
-revoke select on security from resident;
-revoke select,insert on resident_avails_services from resident;
+revoke select,update on resident_avails_services from resident
 
 -- Revoking security permissions
 revoke select on flat_has_security from security;
