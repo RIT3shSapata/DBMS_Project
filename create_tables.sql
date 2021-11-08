@@ -48,6 +48,7 @@ create table employee
 	gender varchar(2) not null,
 	shift varchar(5) default 'day',
 	serviceID varchar(10) not null,
+	salary real not null check(salary>15000),
 	primary key (employeeID),
 	foreign key (serviceID) references services(serviceID)
 );

@@ -19,3 +19,5 @@ select Fname,Lname,shift,gender,type,cost from employee as e INNER JOIN services
 select Fname,Lname,(select count(*) from dependent where residentUID=r.Aadhar and (EXTRACT(year FROM age(now(),DOB)) :: int)>60) from resident as r where (select count(*) from dependent where residentUID=r.Aadhar and (EXTRACT(year FROM age(now(),DOB)) :: int)>60)>0 ;
 --display name and the service availed by the resident
 select Fname,Lname,rrf.FlatID,type as service_availed from resident_avails_services as ras,resident as r,services as s,flat as f,resident_residesin_flat as rrf WHERE rrf.FlatID=f.FlatID AND rrf.ResidentUID=r.Aadhar AND ras.ResidentUID=r.Aadhar AND ras.serviceID=s.serviceID;
+--select the max salary of an employee for every service 
+select type as service_name,max(salary) as max_salary from services as s, employee as e WHERE s.serviceID=e.serviceID GROUP BY s.serviceID;
