@@ -1,3 +1,5 @@
+\c apna_ghar
+
 -- Creating the different users
 create user admin with password 'password1' nocreatedb;
 create user resident with password 'password2' nocreatedb;
@@ -34,7 +36,7 @@ grant select on complaint_display to resident;
 grant insert on complaint_insert to resident;
 grant select on resident_residesin_flat to resident;
 grant select on flat_has_security to resident;
-grant select,update on resident_avails_services to resident
+grant select,update on resident_avails_services to resident;
 
 -- Granting required permissions for dependent
 grant select on resident_display to dependent;
