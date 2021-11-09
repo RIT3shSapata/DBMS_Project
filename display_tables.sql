@@ -10,5 +10,5 @@ SELECT * FROM complaints;
 SELECT * FROM resident_residesin_flat;
 SELECT * FROM flat_has_security;
 SELECT * FROM resident_avails_services;
-
+SELECT * FROM services;
 

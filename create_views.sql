@@ -10,6 +10,7 @@ as select fname,lname,phone,pet_info
 from resident;
 
 
+
 -- Creating Views for Security
 create view security_display 
 as select fname,lname,phone,shift 
@@ -66,7 +67,7 @@ as select visitorID,ResidentUID,fname,lname,purpose,phonenumber,time_of_entry
 from visitor;
 
 create view visitor_update 
-as select time_of_exit 
+as select visitorid,time_of_exit
 from visitor;
 
 
