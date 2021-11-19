@@ -1,0 +1,19 @@
+{
+    "name": "api",
+    "version": "1.0.0",
+    "description": "DBMS Project API",
+    "main": "index.js",
+    "repository": "https://github.com/RIT3shSapata/DBMS_Project",
+    "author": "RIT3shSapata",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.17.1",
+        "pg": "^8.7.1"
+    },
+    "scripts": {
+        "start": "nodemon index.js"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    }
+}
