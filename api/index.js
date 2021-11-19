@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const { admin } = require('./db');
 const adminRouter = require('./router/router.admin');
 
 const PORT = process.env.PORT || 5000;
