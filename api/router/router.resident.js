@@ -9,7 +9,7 @@ const router = require('express').Router();
 router.get('/:id',viewResidentInfo);
 router.get('/dependent/:id',viewDependentInfo);
 router.get('/visitor/:id',viewVisitorInfo);
-//router.post('/servicereq',availService);
+router.post('/servicereq',availService);
 module.exports = router;
 
 

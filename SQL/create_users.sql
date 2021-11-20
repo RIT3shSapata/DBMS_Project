@@ -25,7 +25,6 @@ grant select,insert,update on resident_avails_services to admin;
 grant select on resident to resident;
 grant select on dependent to resident;
 grant select on visitor to resident;
-grant select on flat to resident;
 grant update on resident_update to resident;
 grant select on security_display to resident;
 grant select on services to resident;

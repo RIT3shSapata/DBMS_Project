@@ -1,4 +1,4 @@
-const { resident } = require('../db');
+const { resident,admin} = require('../db');
 
 const viewResidentInfo = async (req, res) => {
     try {
@@ -44,6 +44,23 @@ const viewVisitorInfo = async (req, res) => {
         res.status(500).send();
     }
 };
+const availService = async (req, res) => {
+    try {
+        const {
+            residentUID,
+            serviceID
+        } = req.body;
+        await admin.query(
+            'insert into resident_avails_services values($1,$2);',
+            [residentUID,serviceID]
+        );
+
+        res.send('Resident request received');
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
 module.exports = {
-    viewResidentInfo,viewDependentInfo,viewVisitorInfo
+    viewResidentInfo,viewDependentInfo,viewVisitorInfo,availService
 };
