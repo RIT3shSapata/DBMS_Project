@@ -88,15 +88,15 @@ create table dependent
 create table visitor
 (
 	visitorID varchar(10) not null,
-	ResidentUID varchar(14) not null,
+	FlatID varchar(10) not null,
 	Fname char(15) not null,
 	Lname char(15), 
 	purpose varchar(100),
 	phonenumber varchar(10), 
 	time_of_entry timestamp,
 	time_of_exit timestamp,
-	primary key(visitorID,ResidentUID),
-	foreign key(residentUID) references resident(Aadhar)
+	primary key(visitorID,FlatID),
+	foreign key(FlatID) references flat(flatID)
 );
 
 -- Creating complaints table 
