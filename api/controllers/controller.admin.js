@@ -38,10 +38,10 @@ const addSecurity = async (req, res) => {
             .slice(0, 19)
             .replace('T', ' ');
 
-        const key = Math.floor(Math.random() * 10000000000);
+        const securityID = Math.floor(Math.random() * 10000000000);
 
         await admin.query('insert into security values($1,$2,$3,$4,$5,$6);', [
-            key,
+            securityID,
             fname,
             lname,
             phone,
@@ -56,7 +56,70 @@ const addSecurity = async (req, res) => {
     }
 };
 
+const addService = async (req, res) => {
+    try {
+        const { cost, type } = req.body;
+
+        const serviceID = Math.floor(Math.random() * 10000000000);
+
+        await admin.query('insert into services values($1,$2,$3);', [
+            serviceID,
+            cost,
+            type,
+        ]);
+
+        res.send('Recieved the body');
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
+
+const addEmployee = async (req, res) => {
+    try {
+        const {
+            fname,
+            lname,
+            phone,
+            doj,
+            gender,
+            shift = 'day',
+            serviceID,
+            salary,
+        } = req.body;
+
+        const sql_doj = new Date(doj)
+            .toISOString()
+            .slice(0, 19)
+            .replace('T', ' ');
+
+        const employeeID = Math.floor(Math.random() * 10000000000);
+
+        await admin.query(
+            'insert into employee values($1,$2,$3,$4,$5,$6,$7,$8,$9);',
+            [
+                employeeID,
+                fname,
+                lname,
+                phone,
+                sql_doj,
+                gender,
+                shift,
+                serviceID,
+                salary,
+            ]
+        );
+
+        res.send('Recieved the body');
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
+
 module.exports = {
     addResident,
     addSecurity,
+    addService,
+    addEmployee,
 };
