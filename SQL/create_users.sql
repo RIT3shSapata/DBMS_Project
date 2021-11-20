@@ -59,6 +59,7 @@ grant select on dependent_display to security;
 grant select on visitor_display to security;
 grant insert on visitor_insert to security;
 grant select,update on visitor_update to security;
+grant select on resident_residesin_flat to security;
 
 -- Granting required permissions for employee
 grant select on resident_display to employee; 

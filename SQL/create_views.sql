@@ -5,7 +5,7 @@ create view resident_display
 as select fname,lname,phone,gender 
 from resident;
 
-create view resident_update 
+create view resident_update
 as select fname,lname,phone,pet_info 
 from resident;
 
