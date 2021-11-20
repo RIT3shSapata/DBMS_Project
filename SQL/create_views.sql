@@ -63,7 +63,7 @@ as select *
 from visitor;
 
 create view visitor_insert 
-as select visitorID,ResidentUID,fname,lname,purpose,phonenumber,time_of_entry 
+as select visitorID,flatID,fname,lname,purpose,phonenumber,time_of_entry 
 from visitor;
 
 create view visitor_update 

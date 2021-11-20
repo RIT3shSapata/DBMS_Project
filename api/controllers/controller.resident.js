@@ -15,7 +15,35 @@ const viewResidentInfo = async (req, res) => {
         res.status(500).send();
     }
 };
+const viewDependentInfo = async (req, res) => {
+    try {
+        const { id } = req.params;
 
+        const dependent_info = await resident.query(
+            'select fname,lname,phone,gender from dependent where residentUID=$1;',
+            [id]
+        );
+        res.send(dependent_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
+const viewVisitorInfo = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const visitor_info = await resident.query(
+            'select fname,lname,purpose,phonenumber,time_of_entry,time_of_exit from visitor as v,resident_residesin_flat as rrf where rrf.residentUID=$1 AND rrf.FlatID=v.flatID;',
+            [id]
+        );
+
+        res.send(visitor_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
 module.exports = {
-    viewResidentInfo,
+    viewResidentInfo,viewDependentInfo,viewVisitorInfo
 };
