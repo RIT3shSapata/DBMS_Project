@@ -32,7 +32,7 @@ const Security = () => {
                         className="border-0 border-b-2"
                         placeholder="Enter Last Name"
                     />
-                    <label htmlFor="Purpose" className="text-md mx-2">
+                    <label htmlFor="purpose" className="text-md mx-2">
                         Purpose
                     </label>
                     <input
