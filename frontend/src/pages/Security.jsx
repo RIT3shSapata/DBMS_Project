@@ -1,7 +1,10 @@
+import SignIn from "../components/loginpage";
+
 const Security = () => {
     return (
         <div>
-            <h1 className="text-3xl">Security Page</h1>
+            <h1 className="text-2xl flex justify-center">Security Page</h1>
+            <SignIn></SignIn>
         </div>
     );
 };

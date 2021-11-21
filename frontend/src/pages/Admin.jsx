@@ -1,7 +1,10 @@
+import SignIn from "../components/loginpage";
+
 const Admin = () => {
     return (
         <div>
-            <h1 className="text-3xl">Admin Page</h1>
+            <h1 className="text-2xl flex justify-center ">Admin Page</h1>
+            <SignIn></SignIn>
             <form className="flex justify-around">
                 <div className="justify-self-start">
                     <label htmlFor="aadhar" className="text-md mx-2">
