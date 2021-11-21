@@ -7,7 +7,7 @@ import Security from './pages/Security';
 function App() {
     return (
         <BrowserRouter>
-            <h1 className="text-center text-5xl">DBMS Project</h1>
+            <h1 className="text-center text-3xl">DBMS Project - Apna Ghar </h1>
             <Navbar />
             <Routes>
                 <Route path="/admin" element={<Admin />} />
