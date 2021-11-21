@@ -1,6 +1,9 @@
+import SignIn from '../components/loginpage';
+
 const Security = () => {
     return (
         <div>
+            {/* <h1 className="text-2xl flex justify-center">Security Page</h1> */}
             <h1 className="text-3xl">Security Page</h1>
             <h1 className="text-xl">Enter Visitor Details</h1>
             <form className="flex justify-around">
@@ -53,7 +56,8 @@ const Security = () => {
                         placeholder="Enter Phone Number"
                     />
                 </div>
-            </form>        
+            </form>
+            <SignIn></SignIn>
         </div>
     );
 };
