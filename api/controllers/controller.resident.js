@@ -61,6 +61,18 @@ const availService = async (req, res) => {
         res.status(500).send();
     }
 };
+const viewListOfServices = async (req, res) => {
+    try {
+        const services_info = await resident.query(
+            'select * from services;'
+        );
+
+        res.send(services_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
 module.exports = {
-    viewResidentInfo,viewDependentInfo,viewVisitorInfo,availService
+    viewResidentInfo,viewDependentInfo,viewVisitorInfo,availService,viewListOfServices
 };
