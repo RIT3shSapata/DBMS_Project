@@ -127,7 +127,8 @@ const Resident = () => {
       </Table>
     </TableContainer>
     <h1 className="text-2xl flex justify-center">Avail A Service</h1>
-      <FormControl variant="standard" sx={{ m: 1, minWidth: 120,align: 'center'}} className="flex justify-center">
+    <div className="flex justify-center">
+    <FormControl variant="standard" sx={{ m: 1, minWidth: 120,align: 'center'}} className="flex justify-center">
         <InputLabel id="demo-simple-select-standard-label" className="flex justify-center">Service</InputLabel>
         <Select
           labelId="demo-simple-select-standard-label"
@@ -155,6 +156,8 @@ const Resident = () => {
           Avail the service
         </button>
       </FormControl>
+    </div>
+      
     </div>
     );
 };
