@@ -3,7 +3,7 @@ const New_resident=()=>{
         
         <div className="flex justify-center box-border">
         <form class="w-full max-w-lg">
-            <div class="flex justify-center -mx-3 mb-6">
+        <div class="flex flex-wrap -mx-3 mb-2">
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -44,7 +44,6 @@ const New_resident=()=>{
                     />
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3 mb-6"></div>
             <div class="flex flex-wrap -mx-3 mb-2">
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                     <label
@@ -70,6 +69,32 @@ const New_resident=()=>{
                         id="grid-last-name"
                         type="phone"
                         placeholder="xxxxxxxxxx"
+                    />
+                </div>
+                <div class="w-full md:w-1/2 px-3">
+                    <label
+                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="grid-last-name">
+                        FlatID 
+                    </label>
+                    <input
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-last-name"
+                        type="text"
+                        placeholder="varchar(10)"
+                    />
+                </div>
+                <div class="w-full md:w-1/2 px-3">
+                    <label
+                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="grid-last-name">
+                        No BHK 
+                    </label>
+                    <input
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-last-name"
+                        type="number"
+                        placeholder="2"
                     />
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-6"></div>
