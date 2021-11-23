@@ -1,18 +1,26 @@
 const { security } = require('../db');
-const moment = require('moment');
 
 const addVisitor = async (req, res) => {
     try {
         const { flatid, fname, lname, purpose, phone } = req.body;
 
-        const timeofentry = new moment().format('MMMM Do YYYY, h:mm:ss');
+        const timeofentry = new Date();
+        const visitorID = Math.floor(Math.random() * 10000000000);
 
-        console.log(timeofentry);
+        // res.send({
+        //     visitorID,
+        //     flatid,
+        //     timeofentry,
+        //     fname,
+        //     lname,
+        //     purpose,
+        //     phone,
+        // });
 
-        // await security.query(
-        //     'insert into visitor values($1,$2,$3,$4,$5,$6,$7);',
-        //     [flatid, visitorid, fname, lname, purpose, phone, timeofentry]
-        // );
+        await security.query(
+            'insert into visitor_insert values($1,$2,$3,$4,$5,$6,$7);',
+            [flatid, visitorID, fname, lname, purpose, phone, timeofentry]
+        );
 
         res.send('Recieved the body');
     } catch (e) {
