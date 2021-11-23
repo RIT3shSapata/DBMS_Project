@@ -38,7 +38,7 @@ grant select on complaint_display to resident;
 grant insert on complaint_insert to resident;
 grant select on resident_residesin_flat to resident;
 grant select on flat_has_security to resident;
-grant select,update on resident_avails_services to resident;
+grant select,update,insert on resident_avails_services to resident;
 
 -- Granting required permissions for dependent
 grant select on resident_display to dependent;

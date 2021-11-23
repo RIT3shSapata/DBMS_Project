@@ -29,7 +29,7 @@ revoke select on complaint_display from resident;
 revoke insert on complaint_insert from resident;
 revoke select on resident_residesin_flat from resident;
 revoke select on flat_has_security from resident;
-revoke select,update on resident_avails_services from resident
+revoke select,update on resident_avails_services from resident;
 
 -- Revoking resident dependent
 revoke select on resident_display from dependent;
