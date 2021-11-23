@@ -11,6 +11,7 @@ const Security = () => {
                 <form class="w-full max-w-lg">
                     <div class="flex justify-center -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                            
                             <label
                                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                 for="grid-first-name">
@@ -78,9 +79,7 @@ const Security = () => {
                                 placeholder="xxxxxxxxxx"
                             />
                         </div>
-                        <div class="flex flex-wrap -mx-3 mb-6"></div>
-                        
-                        
+                
                     </div>
                     <div class="flex justify-center -mx-3 mb-6">
                     <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
@@ -121,7 +120,7 @@ const Security = () => {
             <h1 className="text-2xl flex justify-center ">Visitor Exit</h1>
             <div className="flex justify-center box-border">
                 <form class="w-full max-w-lg">
-                    <div class="flex flex-wrap -mx-3 mb-6"></div>
+                    
                     <div class="flex justify-center -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label
