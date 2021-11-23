@@ -54,7 +54,7 @@ const Admin = () => {
                     <Employee></Employee>  
             </div>
             <div class="flex flex-wrap -mx-3 mb-6"></div>
-            <Stack spacing={2} direction="row" className='justify-around'>
+            <Stack spacing={2} direction="row" className='justify-around m-2'>
                 <Button variant="outlined">View Residents And Flat Information</Button>
                 <Button variant="outlined">View Resident's service requests</Button>
                 <Button variant="outlined">View Employees </Button>
