@@ -5,7 +5,7 @@ const Security = () => {
             <h1 className="text-2xl flex justify-center ">Security Page</h1>
             <SignIn></SignIn>
             <h1 className="text-2xl flex justify-center ">
-                Please enter visitor details
+                Enter Visitor Details
             </h1>
             <div className="flex justify-center box-border">
                 <form class="w-full max-w-lg">
@@ -50,7 +50,7 @@ const Security = () => {
                             />
                         </div>
                     </div>
-                    <div class="flex flex-wrap -mx-3 mb-6"></div>
+                    
                     <div class="flex flex-wrap -mx-3 mb-2">
                     <div class="w-full md:w-1/2 px-3">
                             <label
