@@ -37,12 +37,11 @@ const viewResidentInfo_Security = async (req, res) => {
 
 const updateVisitor = async (req, res) => {
     try {
-        const { visitorid, time_of_entry } = req.body;
+        const { visitorid } = req.body;
 
-        const timeofexit = new Date()
-            .toISOString()
-            .slice(0, 19)
-            .replace('T', ' ');
+        const timeofexit = new moment().format('MMMM Do YYYY, h:mm:ss');
+
+        console.log(timeofexit);
 
         await security.query(
             'update visitor set time_of_exit=$1 where visitorID=$2',
