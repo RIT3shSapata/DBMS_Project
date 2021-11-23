@@ -135,7 +135,8 @@ create table resident_avails_services
 (
 	ResidentUID varchar(14),
 	serviceID varchar(10), 
-	primary key(ResidentUID,serviceID),
+	serviceTime timestamp,
+	primary key(ResidentUID,serviceID,serviceTime),
 	foreign key(ResidentUID) references resident(Aadhar)
 	);
 

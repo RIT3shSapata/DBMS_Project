@@ -48,11 +48,12 @@ const availService = async (req, res) => {
     try {
         const {
             residentUID,
-            serviceID
+            serviceID,
         } = req.body;
+        const now = new Date();
         await admin.query(
-            'insert into resident_avails_services values($1,$2);',
-            [residentUID,serviceID]
+            'insert into resident_avails_services values($1,$2,$3);',
+            [residentUID,serviceID,now]
         );
 
         res.send('Resident request received');

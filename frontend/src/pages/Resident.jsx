@@ -6,11 +6,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import React from "react";
+import React, { useEffect } from "react";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select'
+import axios from '../axios'
+
 function createDataDependents(first_name,last_name, phone, gender) {
     return { first_name, last_name, phone, gender};
   }
@@ -29,7 +31,36 @@ function createDataDependents(first_name,last_name, phone, gender) {
   
   
 const Resident = () => {
-  const [Service, setService] = React.useState('');
+  const [Service, setService] = React.useState({});
+  const [services, setServices] = React.useState([]);
+
+  useEffect(() => {
+    const getServices = async()=>{
+      try{
+
+    const response = await axios.get('resident/viewservices/763676231429');
+    setServices(response.data);
+      }catch(e){
+        console.log(e)
+      }
+    }
+    getServices()
+  }, [])
+
+  const availService = async(e)=>{
+    e.preventDefault();
+    try{
+      const serviceObj={
+      serviceID:Service.serviceid,
+      // residentUID:763676231429
+      residentUID:542155761651
+      };
+      const response=await axios.post('resident/servicereq', serviceObj);
+      console.log(response.status);
+    }catch(error){
+      console.log(error)
+    }
+  }
 
   const handleChange = (event) => {
     setService(event.target.value);
@@ -105,13 +136,22 @@ const Resident = () => {
           onChange={handleChange}
           label="Service" className="flex justify-center"
         >
-          <MenuItem value="">
+        {services.map(service=>{
+          return (
+            <MenuItem value={service}>
+              {service.type}
+            </MenuItem>
+          )
+        })}
+          {/* <MenuItem value="">
             <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}><span className="text-gray-400">ServiceID:1235</span> &nbsp; Service Name &nbsp; Service Cost</MenuItem>
+          </MenuItem> */}
+          {/* <MenuItem value={10}><span className="text-gray-400">ServiceID:1235</span> &nbsp; Service Name &nbsp; Service Cost</MenuItem> */}
         </Select>
         <br></br>
-        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        <button 
+        onClick={availService}
+        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
           Avail the service
         </button>
       </FormControl>
