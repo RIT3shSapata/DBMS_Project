@@ -7,6 +7,7 @@ const {
     viewComplaints,
     viewEmployees,
     viewSecurity,
+    viewServiceRequests
 } = require('../controllers/controller.admin');
 
 const router = require('express').Router();
@@ -19,5 +20,5 @@ router.get('/residentinfo', viewResidentInfo);
 router.get('/complaint_info', viewComplaints);
 router.get('/employee_info', viewEmployees);
 router.get('/security_info', viewSecurity);
-router.get('/service_info', viewSecurity);
+router.get('/servicerequest_info', viewServiceRequests);
 module.exports = router;
