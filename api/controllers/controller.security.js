@@ -1,13 +1,9 @@
 const { security } = require('../db');
-const moment = require('moment');
-
 const addVisitor = async (req, res) => {
     try {
         const { flatid, fname, lname, purpose, phone } = req.body;
 
-        const timeofentry = new moment().format('MMMM Do YYYY, h:mm:ss');
-
-        console.log(timeofentry);
+        const timeofentry = new Date();
 
             await security.query(
            'insert into visitor values($1,$2,$3,$4,$5,$6,$7);',
@@ -39,9 +35,7 @@ const updateVisitor = async (req, res) => {
     try {
         const { visitorid } = req.body;
 
-        const timeofexit = new moment().format('MMMM Do YYYY, h:mm:ss');
-
-        console.log(timeofexit);
+        const timeofexit = new Date();
 
         await security.query(
             'update visitor set time_of_exit=$1 where visitorID=$2',
