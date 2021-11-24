@@ -7,7 +7,7 @@ const Security = () => {
             <h1 className="text-2xl flex justify-center ">
                 Enter Visitor Details
             </h1>
-            <div className="flex justify-center box-border">
+            <div className="flex justify-center box-border mt-5">
                 <form class="w-full max-w-lg">
                     <div class="flex justify-center -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -81,9 +81,9 @@ const Security = () => {
                         </div>
                 
                     </div>
-                    <div class="flex justify-center -mx-3 mb-6">
+                    <div class="flex justify-center -mx-3 mb-6 mt-5">
                     <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                        Send to Resident
+                        Alert Resident
                     </button>
                     </div>
                 </form>
@@ -91,7 +91,7 @@ const Security = () => {
             <h1 className="text-2xl flex justify-center ">
                 Enter Resident's Flat Number
             </h1>
-            <div className="flex justify-center box-border">
+            <div className="flex justify-center box-border mt-3">
                 <form class="w-full max-w-lg">
                     
                     <div class="flex justify-center -mx-3 mb-6">
@@ -118,7 +118,7 @@ const Security = () => {
                 </form>
             </div>
             <h1 className="text-2xl flex justify-center ">Visitor Exit</h1>
-            <div className="flex justify-center box-border">
+            <div className="flex justify-center box-border mt-4">
                 <form class="w-full max-w-lg">
                     
                     <div class="flex justify-center -mx-3 mb-6">
