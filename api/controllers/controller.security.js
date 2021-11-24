@@ -9,10 +9,10 @@ const addVisitor = async (req, res) => {
 
         console.log(timeofentry);
 
-        // await security.query(
-        //     'insert into visitor values($1,$2,$3,$4,$5,$6,$7);',
-        //     [flatid, visitorid, fname, lname, purpose, phone, timeofentry]
-        // );
+            await security.query(
+           'insert into visitor values($1,$2,$3,$4,$5,$6,$7);',
+            [flatid, visitorid, fname, lname, purpose, phone, timeofentry]
+        );
 
         res.send('Recieved the body');
     } catch (e) {
