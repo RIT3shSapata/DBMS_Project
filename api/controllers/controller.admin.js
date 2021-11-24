@@ -166,7 +166,7 @@ const viewSecurity= async (req, res) => {
 const viewServiceRequests= async (req, res) => {
     try {
         const servicerequest_info = await admin.query(
-            'select r.Aadhar,r.Fname,r.Lname,ras.serviceID,s.type from resident as r, resident_avails_services as ras, services as s where r.Aadhar=ras.ResidentUID and s.serviceID=ras.serviceID'
+            'select r.Aadhar,r.Fname,r.Lname,ras.serviceID,s.type,ras.serviceTime,f.flatid from resident as r, resident_avails_services as ras, services as s,resident_residesin_flat as f where r.Aadhar=ras.ResidentUID and s.serviceID=ras.serviceID and r.aadhar=f.residentuid'
         );
 
         res.send(servicerequest_info['rows']);

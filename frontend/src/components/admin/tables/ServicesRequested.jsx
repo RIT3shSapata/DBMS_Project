@@ -29,8 +29,8 @@ export default function ServicesRequested() {
         <TableHead>
           <TableRow>
             <TableCell>ResidentUID</TableCell>
-            <TableCell align="right">First name</TableCell>
-            <TableCell align="right">Last name</TableCell>
+            <TableCell align="right">service time</TableCell>
+            <TableCell align="right">flat</TableCell>
             <TableCell align="right">serviceID</TableCell>
             <TableCell align="right">servicename</TableCell>
           </TableRow>
@@ -39,12 +39,12 @@ export default function ServicesRequested() {
           {servicetable.map((row) => (
             <TableRow>
               <TableCell component="th" scope="row">
-                {row.residentuid}
+                {row.aadhar}
               </TableCell>
               <TableCell align="right">{row.servicetime}</TableCell>
               <TableCell align="right">{row.flatid}</TableCell>
               <TableCell align="right">{row.serviceid}</TableCell>
-              <TableCell align="right">{row.servicename}</TableCell>
+              <TableCell align="right">{row.type}</TableCell>
             </TableRow>
           ))}
         </TableBody>
