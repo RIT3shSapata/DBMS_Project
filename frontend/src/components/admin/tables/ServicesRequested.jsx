@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -6,13 +6,21 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Table from '@mui/material/Table';
 import Paper from '@mui/material/Paper';
+import axios from '../../../axios';
 export default function ServicesRequested() {
-    function createDataServiceReq(ResidentUID,serviceTime, FlatID,serviceID,servicename) {
-        return {ResidentUID,serviceTime, FlatID,serviceID,servicename}
+  const [servicetable,setservicetable] = useState([]);
+  useEffect(() => {
+    const servicedata=async()=>{
+      try{
+        const response = await axios.get('/admin/service_info');
+        setservicetable(response.data);
+        }
+      catch(e){
+        console.log(e)
       }
-      const rows_visitors = [
-        createDataServiceReq('1234567891','89999999999','123444444','123444444','servicename')
-      ];
+    }
+    servicedata() 
+  }, [])
     return (
         <div>
             <h1 className="text-2xl flex justify-center">Services Requested</h1>
@@ -28,14 +36,14 @@ export default function ServicesRequested() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows_visitors.map((row) => (
+          {servicetable.map((row) => (
             <TableRow>
               <TableCell component="th" scope="row">
-                {row.ResidentUID}
+                {row.residentuid}
               </TableCell>
-              <TableCell align="right">{row.serviceTime}</TableCell>
-              <TableCell align="right">{row.FlatID}</TableCell>
-              <TableCell align="right">{row.serviceID}</TableCell>
+              <TableCell align="right">{row.servicetime}</TableCell>
+              <TableCell align="right">{row.flatid}</TableCell>
+              <TableCell align="right">{row.serviceid}</TableCell>
               <TableCell align="right">{row.servicename}</TableCell>
             </TableRow>
           ))}

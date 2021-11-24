@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -6,13 +6,21 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Table from '@mui/material/Table';
 import Paper from '@mui/material/Paper';
+import axios from '../../../axios';
 export default function ComplaintTable() {
-    function createdataComplaintTable(ResidentUID,ComplaintID, Complaint,serviceID,servicename) {
-        return {ResidentUID,ComplaintID, Complaint,serviceID,servicename}
+  const [complainttable,setcomplainttable] = useState([]);
+  useEffect(() => {
+    const getcomplaintsdata=async()=>{
+      try{
+        const response = await axios.get('/admin/complaint_info');
+        setcomplainttable(response.data);
+        }
+      catch(e){
+        console.log(e)
       }
-      const rows_visitors = [
-        createdataComplaintTable('1234567891','89999999999','DBMS project is taking too longg!')
-      ];
+    }
+    getcomplaintsdata() 
+  }, [])
     return (
         <div>
             <h1 className="text-2xl flex justify-center">Complaints Made By Residents</h1>
@@ -26,13 +34,13 @@ export default function ComplaintTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows_visitors.map((row) => (
+          {complainttable.map((row) => (
             <TableRow>
               <TableCell component="th" scope="row">
-                {row.ResidentUID}
+                {row.residentuid}
               </TableCell>
-              <TableCell align="right">{row.ComplaintID}</TableCell>
-              <TableCell align="right">{row.Complaint}</TableCell>
+              <TableCell align="right">{row.complaintid}</TableCell>
+              <TableCell align="right">{row.complain}</TableCell>
             </TableRow>
           ))}
         </TableBody>

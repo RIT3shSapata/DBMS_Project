@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -6,13 +6,21 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Table from '@mui/material/Table';
 import Paper from '@mui/material/Paper';
+import axios from '../../../axios';
 export default function EmployeeList() {
-    function createDataEmployee(employeeID,Fname, LastName,phone,doj,shift,serviceID,salary) {
-        return {employeeID,Fname, LastName,phone,doj,shift,serviceID,salary}
+  const [employeelist,setemployeelist] = useState([]);
+  useEffect(() => {
+    const getemployeedata=async()=>{
+      try{
+        const response = await axios.get('/admin/employee_info');
+        setemployeelist(response.data);
+        }
+      catch(e){
+        console.log(e)
       }
-      const rows_visitors = [
-        createDataEmployee('1234567891','Jog','Amma','89999999999','date','day','123444444','30000')
-      ];
+    }
+    getemployeedata() 
+  }, [])
     return (
         <div>
             <h1 className="text-2xl flex justify-center">Employee Information</h1>
@@ -31,13 +39,13 @@ export default function EmployeeList() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows_visitors.map((row) => (
+          {employeelist.map((row) => (
             <TableRow>
               <TableCell component="th" scope="row">
-                {row.employeeID}
+                {row.employeeid}
               </TableCell>
-              <TableCell align="right">{row.Fname}</TableCell>
-              <TableCell align="right">{row.LastName}</TableCell>
+              <TableCell align="right">{row.fname}</TableCell>
+              <TableCell align="right">{row.lname}</TableCell>
               <TableCell align="right">{row.phone}</TableCell>
               <TableCell align="right">{row.doj}</TableCell>
               <TableCell align="right">{row.shift}</TableCell>

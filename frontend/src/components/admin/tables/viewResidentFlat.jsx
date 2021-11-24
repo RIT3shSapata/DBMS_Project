@@ -11,16 +11,11 @@ import axios from '../../../axios';
 export default function ViewResidents() {
   
   const [residenttable,setResidentTable] = useState([]);
-  var rows_visitors = []
   useEffect(() => {
     const getresidentdata=async()=>{
       try{
         const response = await axios.get('/admin/residentinfo');
         setResidentTable(response.data);
-    //     //console.log(residenttable)
-    //     for (let index = 0; index < residenttable.length; index++) {
-    // const element = residenttable[index];
-    // row_visitors.push(createDataVisitors(element.residentuid,element.flatid,element.rent_owned,element.count));
         }
       catch(e){
         console.log(e)

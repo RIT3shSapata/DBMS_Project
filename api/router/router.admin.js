@@ -19,4 +19,5 @@ router.get('/residentinfo', viewResidentInfo);
 router.get('/complaint_info', viewComplaints);
 router.get('/employee_info', viewEmployees);
 router.get('/security_info', viewSecurity);
+router.get('/service_info', viewSecurity);
 module.exports = router;
