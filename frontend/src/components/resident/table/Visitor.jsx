@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,15 +6,21 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import axios from '../../../axios';
 export default function Visitor() {
-    function createDataVisitors(first_name,last_name, phone, purpose,time_of_entry,time_of_exit) {
-        return { first_name, last_name, phone, purpose, time_of_entry, time_of_exit};
+  const [visitortable,setvisitortable] = useState([]);
+  useEffect(() => {
+    const visitordata=async()=>{
+      try{
+        const response = await axios.get('/resident/viewVisitorInfo');
+        setvisitortable(response.data);
+        }
+      catch(e){
+        console.log(e)
       }
-    
-      const rows_visitors = [
-        createDataVisitors('Sahana','Ramesh',9999999999,'simply','time','time')
-      ];
-      
+    }
+    visitordata() 
+  }, [])
     return (
         <div className="mb-5">
             <h1 className="text-2xl flex justify-center">Your visitors Information</h1>
@@ -32,7 +38,7 @@ export default function Visitor() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows_visitors.map((row) => (
+          {visitortable.map((row) => (
             <TableRow>
               <TableCell component="th" scope="row">
                 {row.first_name}
