@@ -152,12 +152,34 @@ const Resident = () => {
         <br></br>
         <button 
         onClick={availService}
-        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
           Avail the service
         </button>
       </FormControl>
     </div>
-      
+    <div className="flex justify-center">
+        <form className="w-full max-w-lg">
+        <div className=" -mx-3 mb-2">
+                <div className="w-full">
+                    <label
+                        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="grid-last-name">
+                        Enter your complaint
+                    </label>
+                    <input
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-last-name"
+                        type="text"
+                        placeholder="Doe"
+                    />
+                </div>
+            <br></br>
+            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                File a complaint
+            </button>
+          </div>
+        </form>
+    </div>
     </div>
     );
 };
