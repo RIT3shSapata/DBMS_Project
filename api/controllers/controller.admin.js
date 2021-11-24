@@ -116,10 +116,21 @@ const addEmployee = async (req, res) => {
         res.status(500).send();
     }
 };
-
+const viewResidentInfo = async (req, res) => {
+    try {
+        const residents_info = await admin.query(
+            'select r.residentuid,count,r.flatid,rent_owned from (SELECT residentuid,count(visitorid) as count FROM visitor RIGHT JOIN resident_residesin_flat USING (flatid) group by(residentuid)) as f JOIN resident_residesin_flat as r ON r.residentuid=f.residentuid;'
+        );
+        res.send(residents_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
 module.exports = {
     addResident,
     addSecurity,
     addService,
     addEmployee,
+    viewResidentInfo
 };

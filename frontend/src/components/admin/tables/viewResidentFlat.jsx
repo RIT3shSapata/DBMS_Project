@@ -9,11 +9,11 @@ import Table from '@mui/material/Table';
 import Paper from '@mui/material/Paper';
 export default function ViewResidents() {
     
-  function createDataVisitors(residentuid,flatuid, rent_owned,no_bhk) {
-    return { residentuid,flatuid, rent_owned,no_bhk};
+  function createDataVisitors(residentuid,flatuid, rent_owned,visitor_count) {
+    return { residentuid,flatuid, rent_owned,visitor_count };
   }
   const rows_visitors = [
-    createDataVisitors('12345','12345','rent','2')
+    createDataVisitors('12345','12345','rent','0')
   ];
     return (
     <div>
@@ -25,7 +25,7 @@ export default function ViewResidents() {
             <TableCell>ResidentUID</TableCell>
             <TableCell align="right">FlatUID</TableCell>
             <TableCell align="right">Rent/Owned</TableCell>
-            <TableCell align="right">No of BHK</TableCell>
+            <TableCell align="right">No of Visitors</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -36,7 +36,7 @@ export default function ViewResidents() {
               </TableCell>
               <TableCell align="right">{row.flatuid}</TableCell>
               <TableCell align="right">{row.rent_owned}</TableCell>
-              <TableCell align="right">{row.no_bhk}</TableCell>
+              <TableCell align="right">{row.visitor_count}</TableCell>
             </TableRow>
           ))}
         </TableBody>
