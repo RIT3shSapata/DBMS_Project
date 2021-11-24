@@ -163,6 +163,18 @@ const viewSecurity= async (req, res) => {
         res.status(500).send();
     }
 };
+const viewServiceRequests= async (req, res) => {
+    try {
+        const servicerequest_info = await admin.query(
+            'select r.Aadhar,r.Fname,r.Lname,ras.serviceID,s.type from resident as r, resident_avails_services as ras, services as s where r.Aadhar=ras.ResidentUID and s.serviceID=ras.serviceID'
+        );
+
+        res.send(servicerequest_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
 module.exports = {
     addResident,
     addSecurity,
@@ -171,5 +183,6 @@ module.exports = {
     viewResidentInfo,
     viewComplaints,
     viewEmployees,
-    viewSecurity
+    viewSecurity,
+    viewServiceRequests
 };
