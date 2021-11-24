@@ -12,7 +12,7 @@ export default function ServicesRequested() {
   useEffect(() => {
     const servicedata=async()=>{
       try{
-        const response = await axios.get('/admin/service_info');
+        const response = await axios.get('/admin/servicerequest_info');
         setservicetable(response.data);
         }
       catch(e){
