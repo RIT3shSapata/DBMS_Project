@@ -1,609 +1,104 @@
 import SignIn from '../components/loginpage';
-
-const Admin = () => {
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import New_resident from '../components/admin/forms/resident';
+import Security from '../components/admin/forms/security';
+import Dependent from '../components/admin/forms/dependent';
+import Service from '../components/admin/forms/service';
+import Employee from '../components/admin/forms/employee';
+import { useState } from 'react';
+import ViewResidents from '../components/admin/tables/viewResidentFlat';
+import EmployeeList from '../components/admin/tables/EmployeeList';
+import ServicesRequested from '../components/admin/tables/ServicesRequested';
+import SecurityTable from '../components/admin/tables/SecurityTable';
+import ComplaintTable from '../components/admin/tables/ComplaintTable';
+function Admin() {
+    const [residentform, setResidentform] = useState(false);
+    const [dependentinfo, setDependentinfo] = useState(false);
+    const [security, setSecurityform] = useState(false);
+    const [employee, setEmployeeform] = useState(false);
+    const [service, setServiceform] = useState(false);
+    const [resideflatinfo,setresideflatinfo] = useState(false);
+    const [servicereqtable,setservicereqtable] = useState(false);
+    const [employeelist,setemployeelist] = useState(false);
+    const [securitytable,setsecuritytable] = useState(false);
+    const [complaintstable,setComplaintstable] = useState(false);
     return (
         <div>
             <h1 className="text-2xl flex justify-center ">Admin Page</h1>
             <SignIn></SignIn>
+            <Stack spacing={2} direction="row" className='justify-around'>
+                <Button variant="outlined" onClick={() => setResidentform(!residentform)}>Enter Resident Information</Button>
+                <Button variant="outlined" onClick={() => setDependentinfo(!dependentinfo)}>Enter Dependent's Information</Button>
+                <Button variant="outlined" onClick={() => setSecurityform(!security)}>Enter Security Details </Button>
+                <Button variant="outlined" onClick={() => setEmployeeform(!employee)}>Enter new Employee Details </Button>
+                <Button variant="outlined" onClick={() => setServiceform(!service)}>Create new service </Button>
+            </Stack>
+            <div class="flex flex-wrap -mx-3 mb-6"></div>
+            <div>
+            {residentform?<div>
             <h1 className="text-2xl flex justify-center ">
                 Enter Resident Info
             </h1>
-            <div className="flex justify-center box-border">
-                <form class="w-full max-w-lg">
-                    <div class="flex justify-center -mx-3 mb-6">
-                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-first-name">
-                                Aadhar
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                id="grid-first-name"
-                                type="text"
-                                placeholder="12 DIGITS AADHAR NO"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/2 px-3">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
-                                First Name
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name"
-                                type="text"
-                                placeholder="Doe"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/2 px-3">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
-                                Last Name
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name"
-                                type="text"
-                                placeholder="Doe"
-                            />
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6"></div>
-                    <div class="flex flex-wrap -mx-3 mb-2">
-                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-city">
-                                Date of Birth
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-city"
-                                type="date"
-                                placeholder="Albuquerque"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/2 px-3">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
-                                Phone Number
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name"
-                                type="phone"
-                                placeholder="xxxxxxxxxx"
-                            />
-                        </div>
-                        <div class="flex flex-wrap -mx-3 mb-6"></div>
-                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-state">
-                                Pet Info
-                            </label>
-                            <div class="relative">
-                                <select
-                                    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-state">
-                                    <option>No pet</option>
-                                    <option>Cat</option>
-                                    <option>Dog</option>
-                                </select>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                    <svg
-                                        class="fill-current h-4 w-4"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20">
-                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-zip">
-                                Gender
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-zip"
-                                type="text"
-                                placeholder="Male/Female/Others"
-                            />
-                        </div>
-                    </div>
-
-                    <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                        Add a new resident
-                    </button>
-                </form>
+            <div class="flex flex-wrap -mx-3 mb-6"></div>
+            <New_resident></New_resident>
+            </div>:<div></div>}
             </div>
+            <div class="flex flex-wrap -mx-3 mb-6"></div>
+            <div>
+            {dependentinfo?<div>
             <h1 className="text-2xl flex justify-center ">
                 Enter Dependent's Info
             </h1>
-            <div className="flex justify-center box-border">
-                <form class="w-full max-w-lg">
-                    <div class="flex flex-wrap -mx-3 mb-6"></div>
-                    <div class="flex justify-center -mx-3 mb-6">
-                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-first-name">
-                                Aadhar
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                id="grid-first-name"
-                                type="text"
-                                placeholder="12 DIGITS AADHAR NO"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-first-name">
-                                Resident UID
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                id="grid-first-name"
-                                type="text"
-                                placeholder="12 DIGITS AADHAR NO"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/2 px-3">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
-                                First Name
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name"
-                                type="text"
-                                placeholder="J"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/2 px-3">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
-                                Last Name
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name"
-                                type="text"
-                                placeholder="Doe"
-                            />
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6"></div>
-                    <div class="flex flex-wrap -mx-3 mb-2">
-                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-city">
-                                Date of Birth
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-city"
-                                type="date"
-                                placeholder="Albuquerque"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/2 px-3">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
-                                Phone Number
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name"
-                                type="phone"
-                                placeholder="xxxxxxxxxx"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-zip">
-                                Gender
-                            </label>
-                            <div class="relative">
-                                <select
-                                    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-state">
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Others</option>
-                                </select>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                    <svg
-                                        class="fill-current h-4 w-4"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20">
-                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                        Add a dependent
-                    </button>
-                </form>
-            </div>
-            <h1 className="text-2xl flex justify-center ">Enter Security</h1>
-            <div className="flex justify-center box-border">
-                <form class="w-full max-w-lg">
-                    <div class="flex flex-wrap -mx-3 mb-6"></div>
-                    <div class="flex justify-center -mx-3 mb-6">
-                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-first-name">
-                                securityID
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                id="grid-first-name"
-                                type="text"
-                                placeholder="10 Digit NO"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/2 px-3">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
-                                First Name
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name"
-                                type="text"
-                                placeholder="J"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/2 px-3">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
-                                Last Name
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name"
-                                type="text"
-                                placeholder="Doe"
-                            />
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6"></div>
-                    <div class="flex flex-wrap -mx-3 mb-2">
-                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-city">
-                                Date of Birth
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-city"
-                                type="date"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/2 px-3">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
-                                Phone Number
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name"
-                                type="phone"
-                                placeholder="xxxxxxxxxx"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-zip">
-                                Shift
-                            </label>
-                            <div class="relative">
-                                <select
-                                    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-state">
-                                    <option>Day</option>
-                                    <option>Night</option>
-                                </select>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                    <svg
-                                        class="fill-current h-4 w-4"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20">
-                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                        Add a security
-                    </button>
-                </form>
+            <Dependent></Dependent></div>:<div></div>}
             </div>
             <div>
-                <h1 className="text-2xl flex justify-center ">
-                    Enter Security
-                </h1>
-                <div className="flex justify-center box-border">
-                    <form class="w-full max-w-lg">
-                        <div class="flex flex-wrap -mx-3 mb-6"></div>
-                        <div class="flex justify-center -mx-3 mb-6">
-                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-first-name">
-                                    securityID
-                                </label>
-                                <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                    id="grid-first-name"
-                                    type="text"
-                                    placeholder="10 Digit NO"
-                                />
-                            </div>
-                            <div class="w-full md:w-1/2 px-3">
-                                <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
-                                    First Name
-                                </label>
-                                <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name"
-                                    type="text"
-                                    placeholder="J"
-                                />
-                            </div>
-                            <div class="w-full md:w-1/2 px-3">
-                                <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
-                                    Last Name
-                                </label>
-                                <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name"
-                                    type="text"
-                                    placeholder="Doe"
-                                />
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap -mx-3 mb-6"></div>
-                        <div class="flex flex-wrap -mx-3 mb-2">
-                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-city">
-                                    Date of Birth
-                                </label>
-                                <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-city"
-                                    type="date"
-                                />
-                            </div>
-                            <div class="w-full md:w-1/2 px-3">
-                                <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-last-name">
-                                    Phone Number
-                                </label>
-                                <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-last-name"
-                                    type="phone"
-                                    placeholder="xxxxxxxxxx"
-                                />
-                            </div>
-                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-zip">
-                                    Shift
-                                </label>
-                                <div class="relative">
-                                    <select
-                                        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-state">
-                                        <option>Day</option>
-                                        <option>Night</option>
-                                    </select>
-                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                        <svg
-                                            class="fill-current h-4 w-4"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20">
-                                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                            Add a security
-                        </button>
-                    </form>
-                </div>
-                <div>
+            {security?<div>
+            <div class="flex flex-wrap -mx-3 mb-6"></div>
+            <div>
+            <h1 className="text-2xl flex justify-center ">Enter Security</h1>
+            <Security></Security></div></div>:<div></div>}
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-6"></div>
+            <div>{employee?<div>
+            <div class="flex flex-wrap -mx-3 mb-6"></div>
+            <div>
                     <h1 className="text-2xl flex justify-center ">
                         Enter Employee
                     </h1>
-                    <div className="flex justify-center box-border">
-                        <form class="w-full max-w-lg">
-                            <div class="flex flex-wrap -mx-3 mb-6"></div>
-                            <div class="flex justify-center -mx-3 mb-6">
-                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                    <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-first-name">
-                                        employeeID
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                        id="grid-first-name"
-                                        type="text"
-                                        placeholder="10 Digit NO"
-                                    />
-                                </div>
-                                <div class="w-full md:w-1/2 px-3">
-                                    <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
-                                        First Name
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name"
-                                        type="text"
-                                        placeholder="J"
-                                    />
-                                </div>
-                                <div class="w-full md:w-1/2 px-3">
-                                    <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
-                                        Last Name
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name"
-                                        type="text"
-                                        placeholder="Doe"
-                                    />
-                                </div>
-                            </div>
-                            <div class="flex flex-wrap -mx-3 mb-2">
-                                <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                    <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-city">
-                                        Date of Birth
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-city"
-                                        type="date"
-                                    />
-                                </div>
-                                <div class="w-full md:w-1/2 px-3">
-                                    <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
-                                        Phone Number
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name"
-                                        type="phone"
-                                        placeholder="xxxxxxxxxx"
-                                    />
-                                </div>
-                                <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                    <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-zip">
-                                        Shift
-                                    </label>
-                                    <div class="relative">
-                                        <select
-                                            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                            id="grid-state">
-                                            <option>Day</option>
-                                            <option>Night</option>
-                                        </select>
-                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                            <svg
-                                                class="fill-current h-4 w-4"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20">
-                                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="relative">
-                                        <label
-                                            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                            for="grid-zip">
-                                            Shift
-                                        </label>
-                                        <select
-                                            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                            id="grid-state">
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Others</option>
-                                        </select>
-                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                            <svg
-                                                class="fill-current h-4 w-4"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20">
-                                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="w-full md:w-1/2 px-3">
-                                    <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
-                                        serviceID
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name"
-                                        type="text"
-                                        placeholder="10 varchar"
-                                    />
-                                </div>
-                                <div class="w-full md:w-1/2 px-3">
-                                    <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        for="grid-last-name">
-                                        salary
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-last-name"
-                                        type="number"
-                                        placeholder="Doe"
-                                    />
-                                </div>
-                            </div>
-                            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                                Add an employee
-                            </button>
-                        </form>
-                    </div>
-                </div>
+                    <Employee></Employee>  
             </div>
+            </div>:<div></div>}</div>
+            <div>
+                {service?<div>
+            <h1 className="text-2xl flex justify-center ">
+                    Enter a new service
+            </h1>
+            <Service></Service>
+            </div>:<div></div>}
+            </div>
+            <div>
+             <Stack spacing={2} direction="row" className='justify-around m-2'>
+                <Button variant="outlined" onClick={() => setresideflatinfo(!resideflatinfo)}>View Residents And Flat Information</Button>
+                <Button variant="outlined" onClick={() => setservicereqtable(!servicereqtable)}>View Resident's service requests</Button>
+                <Button variant="outlined" onClick={() => setemployeelist(!employeelist)}>View Employees </Button>
+                <Button variant="outlined" onClick={() => setsecuritytable(!securitytable)}>View Security Details </Button>
+                <Button variant="outlined" onClick={() => setComplaintstable(!complaintstable)}>View Complaints </Button>
+            </Stack>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-6"></div>
+            <div>{resideflatinfo?
+            <ViewResidents></ViewResidents>:<div></div>}</div>
+            <div>{servicereqtable?
+            <ServicesRequested></ServicesRequested>:<div></div>}</div>
+            <div>{employeelist?
+            <EmployeeList></EmployeeList>:<div></div>}</div>
+            <div>{securitytable?
+            <SecurityTable></SecurityTable>:<div></div>}</div>
+            <div>{complaintstable?
+            <ComplaintTable></ComplaintTable>:<div></div>}</div>
         </div>
     );
-};
+}
 
 export default Admin;

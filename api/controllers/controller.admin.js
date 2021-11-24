@@ -116,10 +116,73 @@ const addEmployee = async (req, res) => {
         res.status(500).send();
     }
 };
+const viewResidentInfo = async (req, res) => {
+    try {
+        const residents_info = await admin.query(
+            'select r.residentuid,count,r.flatid,rent_owned from (SELECT residentuid,count(visitorid) as count FROM visitor RIGHT JOIN resident_residesin_flat USING (flatid) group by(residentuid)) as f JOIN resident_residesin_flat as r ON r.residentuid=f.residentuid;'
+        );
+        res.send(residents_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
+const viewComplaints = async (req, res) => {
+    try {
+        const complaint_info = await admin.query(
+            'select complaintID,residentUID,complain from complaints;'
+        );
 
+        res.send(complaint_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
+const viewEmployees= async (req, res) => {
+    try {
+        const employee_info = await admin.query(
+            'select employeeID,Fname,Lname,phone,doj,shift,serviceID,salary from employee;'
+        );
+
+        res.send(employee_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
+const viewSecurity= async (req, res) => {
+    try {
+        const security_info = await admin.query(
+            'select securityID,Fname,Lname,phone,doj,shift from security;'
+        );
+
+        res.send(security_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
+const viewServiceRequests= async (req, res) => {
+    try {
+        const servicerequest_info = await admin.query(
+            'select r.Aadhar,r.Fname,r.Lname,ras.serviceID,s.type,ras.serviceTime,f.flatid from resident as r, resident_avails_services as ras, services as s,resident_residesin_flat as f where r.Aadhar=ras.ResidentUID and s.serviceID=ras.serviceID and r.aadhar=f.residentuid'
+        );
+
+        res.send(servicerequest_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
 module.exports = {
     addResident,
     addSecurity,
     addService,
     addEmployee,
+    viewResidentInfo,
+    viewComplaints,
+    viewEmployees,
+    viewSecurity,
+    viewServiceRequests
 };
