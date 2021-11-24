@@ -22,6 +22,12 @@ const addResident = async (req, res) => {
             [aadhar, fname, lname, sql_dob, phone, gender, pet_info]
         );
 
+        await admin.query('insert into auth values($1,$2,$3);', [
+            aadhar,
+            'password2',
+            'resident',
+        ]);
+
         res.send('Recieved the body');
     } catch (e) {
         console.log(e);
@@ -49,6 +55,11 @@ const addSecurity = async (req, res) => {
             shift,
         ]);
 
+        await admin.query('insert into auth values($1,$2,$3);', [
+            securityID,
+            'password3',
+            'resident',
+        ]);
         res.send('Recieved the body');
     } catch (e) {
         console.log(e);
@@ -139,7 +150,7 @@ const viewComplaints = async (req, res) => {
         res.status(500).send();
     }
 };
-const viewEmployees= async (req, res) => {
+const viewEmployees = async (req, res) => {
     try {
         const employee_info = await admin.query(
             'select employeeID,Fname,Lname,phone,doj,shift,serviceID,salary from employee;'
@@ -151,7 +162,7 @@ const viewEmployees= async (req, res) => {
         res.status(500).send();
     }
 };
-const viewSecurity= async (req, res) => {
+const viewSecurity = async (req, res) => {
     try {
         const security_info = await admin.query(
             'select securityID,Fname,Lname,phone,doj,shift from security;'
@@ -163,7 +174,7 @@ const viewSecurity= async (req, res) => {
         res.status(500).send();
     }
 };
-const viewServiceRequests= async (req, res) => {
+const viewServiceRequests = async (req, res) => {
     try {
         const servicerequest_info = await admin.query(
             'select r.Aadhar,r.Fname,r.Lname,ras.serviceID,s.type,ras.serviceTime,f.flatid from resident as r, resident_avails_services as ras, services as s,resident_residesin_flat as f where r.Aadhar=ras.ResidentUID and s.serviceID=ras.serviceID and r.aadhar=f.residentuid'
@@ -184,5 +195,5 @@ module.exports = {
     viewComplaints,
     viewEmployees,
     viewSecurity,
-    viewServiceRequests
+    viewServiceRequests,
 };

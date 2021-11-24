@@ -20,6 +20,7 @@ grant select,insert,update on complaints to admin;
 grant select,insert,update on flat_has_security to admin;
 grant select,insert,update on resident_residesin_flat to admin;
 grant select,insert,update on resident_avails_services to admin;
+grant select,insert,update on auth to admin;
 
 -- Granting required permissions for resident
 grant select on resident to resident;
