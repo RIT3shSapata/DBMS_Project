@@ -12,7 +12,8 @@ export default function Dependent() {
   useEffect(() => {
     const dependentdata=async()=>{
       try{
-        const response = await axios.get('/resident/viewDependentInfo');
+        //const params = new URLSearchParams([['id', '763676231429']]);
+        const response = await axios.get('/resident/dependent/763676231429');
         setdependenttable(response.data);
         }
       catch(e){
@@ -38,9 +39,9 @@ export default function Dependent() {
           {dependenttable.map((row) => (
             <TableRow>
               <TableCell component="th" scope="row">
-                {row.first_name}
+                {row.fname}
               </TableCell>
-              <TableCell align="right">{row.last_name}</TableCell>
+              <TableCell align="right">{row.lname}</TableCell>
               <TableCell align="right">{row.phone}</TableCell>
               <TableCell align="right">{row.gender}</TableCell>
             </TableRow>
