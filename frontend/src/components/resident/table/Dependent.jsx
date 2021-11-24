@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,13 +7,19 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 export default function Dependent() {
-    function createDataDependents(first_name,last_name, phone, gender) {
-        return { first_name, last_name, phone, gender};
+      const [dependenttable,setdependenttable] = useState([]);
+  useEffect(() => {
+    const dependentdata=async()=>{
+      try{
+        const response = await axios.get('/resident/viewDependentInfo');
+        setdependenttable(response.data);
+        }
+      catch(e){
+        console.log(e)
       }
-      const rows_dependents = [
-        createDataDependents('Frozen yoghurt', 159, 6.0, 24),
-        createDataDependents('Ice cream sandwich', 237, 9.0, 37,)
-      ];
+    }
+    dependentdata() 
+  }, [])
     return (
         <div className="mb-5">
             <h1 className="text-2xl flex justify-center">View your dependents</h1>
@@ -29,7 +34,7 @@ export default function Dependent() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows_dependents.map((row) => (
+          {dependenttable.map((row) => (
             <TableRow>
               <TableCell component="th" scope="row">
                 {row.first_name}
