@@ -7,16 +7,6 @@ const addVisitor = async (req, res) => {
         const timeofentry = new Date();
         const visitorID = Math.floor(Math.random() * 10000000000);
 
-        // res.send({
-        //     visitorID,
-        //     flatid,
-        //     timeofentry,
-        //     fname,
-        //     lname,
-        //     purpose,
-        //     phone,
-        // });
-
         await security.query(
             'insert into visitor_insert values($1,$2,$3,$4,$5,$6,$7);',
             [flatid, visitorID, fname, lname, purpose, phone, timeofentry]
@@ -47,7 +37,7 @@ const updateVisitor = async (req, res) => {
     try {
         const { visitorid } = req.body;
 
-        const timeofexit = new moment().format('MMMM Do YYYY, h:mm:ss');
+        const timeofexit = new Date();
 
         console.log(timeofexit);
 

@@ -11,5 +11,6 @@ router.post('/resident', addResident);
 router.post('/security', addSecurity);
 router.post('/service', addService);
 router.post('/employee', addEmployee);
+//add depenedent
 
 module.exports = router;
