@@ -4,7 +4,7 @@ export default function Service() {
     return (
         <div>
             <div className="flex justify-center box-border">
-            <form class="w-full max-w-lg"> 
+            <form class="w-full max-w-lg mb-6"> 
             <div class="flex flex-wrap -mx-3 mb-6"></div>
                 <div class="flex justify-center -mx-3 mb-6">
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">

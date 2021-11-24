@@ -1,10 +1,10 @@
 const Employee=()=>{
     return (
         <div className="flex justify-center box-border">
-                        <form class="w-full max-w-lg">
+                        <form class="w-full max-w-lg mb-6">
                             <div class="flex flex-wrap -mx-3 mb-6"></div>
                             <div class="flex flex-wrap -mx-3 mb-2">
-                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                     <label
                                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                         for="grid-first-name">
@@ -17,7 +17,7 @@ const Employee=()=>{
                                         placeholder="10 Digit NO"
                                     />
                                 </div>
-                                <div class="w-full md:w-1/2 px-3">
+                                <div class="w-full md:w-1/3 px-3">
                                     <label
                                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                         for="grid-last-name">
@@ -30,7 +30,7 @@ const Employee=()=>{
                                         placeholder="J"
                                     />
                                 </div>
-                                <div class="w-full md:w-1/2 px-3">
+                                <div class="w-full md:w-1/3 px-3">
                                     <label
                                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                         for="grid-last-name">
