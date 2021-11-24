@@ -127,10 +127,49 @@ const viewResidentInfo = async (req, res) => {
         res.status(500).send();
     }
 };
+const viewComplaints = async (req, res) => {
+    try {
+        const complaint_info = await admin.query(
+            'select complaintID,residentUID,complain from complaints;'
+        );
+
+        res.send(complaint_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
+const viewEmployees= async (req, res) => {
+    try {
+        const employee_info = await admin.query(
+            'select employeeID,Fname,Lname,phone,doj,shift,serviceID,salary from employee;'
+        );
+
+        res.send(employee_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
+const viewSecurity= async (req, res) => {
+    try {
+        const security_info = await admin.query(
+            'select securityID,Fname,Lname,phone,doj,shift from security;'
+        );
+
+        res.send(security_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
 module.exports = {
     addResident,
     addSecurity,
     addService,
     addEmployee,
-    viewResidentInfo
+    viewResidentInfo,
+    viewComplaints,
+    viewEmployees,
+    viewSecurity
 };
