@@ -7,13 +7,16 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from '../../../axios';
+import {useSelector} from 'react-redux'
+
 export default function Visitor() {
+  const {user} = useSelector((state)=>state.auth)
     const [visitortable, setvisitortable] = useState([]);
     useEffect(() => {
         const visitordata = async () => {
             try {
                 const response = await axios.get(
-                    '/resident/visitor/7876676215'
+                    `/resident/visitor/${user.username}`
                 );
                 setvisitortable(response.data);
             } catch (e) {

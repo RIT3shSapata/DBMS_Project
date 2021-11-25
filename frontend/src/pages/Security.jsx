@@ -45,12 +45,14 @@ const Security = () => {
     };
     const [flatid, setflatID] = useState('');
     const [fname, setfname] = useState('');
-    const [Lname, setlname] = useState('');
+    const [lname, setlname] = useState('');
     const viewResidentName = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.get(`security/${flatid}`);
             console.log(response.data);
+            setfname(response.data.fname)
+            setlname(response.data.lname)
         } catch (error) {
             console.log(error);
         }
@@ -181,6 +183,11 @@ const Security = () => {
                         </button>
                     </div>
                 </form>
+                {fname&&lname?(
+                    <div>
+                        {fname} {lname}
+                    </div>
+                ):''}
             </div>
             <h1 className="text-2xl flex justify-center ">Visitor Exit</h1>
             <div className="flex justify-center box-border mt-4">
