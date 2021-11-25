@@ -73,10 +73,10 @@ const addService = async (req, res) => {
     try {
         const { cost, type } = req.body;
 
-        const serviceID = Math.floor(Math.random() * 10000000000);
+        const serviceid = Math.floor(Math.random() * 10000000000);
 
         await admin.query('insert into services values($1,$2,$3);', [
-            serviceID,
+            serviceid,
             cost,
             type,
         ]);
@@ -97,7 +97,7 @@ const addEmployee = async (req, res) => {
             doj,
             gender,
             shift = 'day',
-            serviceID,
+            serviceid,
             salary,
         } = req.body;
 
@@ -118,7 +118,7 @@ const addEmployee = async (req, res) => {
                 sql_doj,
                 gender,
                 shift,
-                serviceID,
+                serviceid,
                 salary,
             ]
         );
@@ -155,7 +155,7 @@ const viewComplaints = async (req, res) => {
 const viewEmployees= async (req, res) => {
     try {
         const employee_info = await admin.query(
-            'select employeeID,Fname,Lname,phone,doj,shift,serviceID,salary from employee;'
+            'select employeeID,Fname,Lname,phone,doj,shift,serviceid,salary from employee;'
         );
 
         res.send(employee_info['rows']);
@@ -179,7 +179,7 @@ const viewSecurity= async (req, res) => {
 const viewServiceRequests= async (req, res) => {
     try {
         const servicerequest_info = await admin.query(
-            'select r.Aadhar,r.Fname,r.Lname,ras.serviceID,s.type,ras.serviceTime,f.flatid from resident as r, resident_avails_services as ras, services as s,resident_residesin_flat as f where r.Aadhar=ras.ResidentUID and s.serviceID=ras.serviceID and r.aadhar=f.residentuid'
+            'select r.Aadhar,r.Fname,r.Lname,ras.serviceid,s.type,ras.serviceTime,f.flatid from resident as r, resident_avails_services as ras, services as s,resident_residesin_flat as f where r.Aadhar=ras.ResidentUID and s.serviceid=ras.serviceid and r.aadhar=f.residentuid'
         );
 
         res.send(servicerequest_info['rows']);
@@ -199,6 +199,17 @@ const ResidentResidesinFlat = async (req, res) => {
         res.status(500).send();
     }
 }
+const addDependent = async (req, res) => {
+    try{
+        const {aadhar,residentid,fname,lname,dob,phone,gender}=req.body;
+        await admin.query('insert into dependent values($1, $2,$3,$4,$5,$6,$7);',[aadhar,residentid,fname,lname,dob,phone,gender])
+        res.status(200).send();
+    }
+    catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+}
 
 module.exports = {
     addResident,
@@ -210,5 +221,5 @@ module.exports = {
     viewEmployees,
     viewSecurity,
     viewServiceRequests,
-    addFlat,ResidentResidesinFlat
+    addFlat,ResidentResidesinFlat,addDependent
 };

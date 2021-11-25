@@ -1,25 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from '../../../axios';
 
-export default function Service() {
+export default function Service({toggleForm}) {
+    const [servicename,setservicename]=useState('');
+    const [cost,setcost]=useState('');
+    const enterservice=async(e)=>{
+        e.preventDefault();
+        try{
+            const service={
+                    type:servicename,
+                    cost:cost,
+            }
+            const response = await axios.post('admin/service',service);
+            console.log(response.status);
+            setservicename('');
+            setcost('');
+            toggleForm(false);
+        }
+        catch(error){
+            console.log(error.message);
+        }
+    }
     return (
         <div>
             <div className="flex justify-center box-border">
-            <form class="w-full max-w-lg mb-6"> 
+            <form class="w-full max-w-lg mb-6" onSubmit={enterservice}> 
             <div class="flex flex-wrap -mx-3 mb-6"></div>
                 <div class="flex justify-center -mx-3 mb-6">
-                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                <label
-                                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-first-name">
-                                    serviceID
-                                </label>
-                                <input
-                                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                    id="grid-first-name"
-                                    type="text"
-                                    placeholder="10 Digit NO"
-                                />
-                                </div>
                                 <div  class="w-full md:w-1/2 px-3">
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -31,6 +38,8 @@ export default function Service() {
                                     id="grid-last-name"
                                     type="text"
                                     placeholder="Cleaning"
+                                    value={servicename}
+                        onChange = {(e)=>setservicename(e.target.value)}
                                 />
                                 </div>
                                 <div class="w-full md:w-1/2 px-3">
@@ -44,6 +53,8 @@ export default function Service() {
                                     id="grid-last-name"
                                     type="text"
                                     placeholder="100"
+                                    value={cost}
+                        onChange = {(e)=>setcost(e.target.value)}
                                 />
                                 </div>
                             </div>

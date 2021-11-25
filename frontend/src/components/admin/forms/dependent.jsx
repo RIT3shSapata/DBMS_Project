@@ -1,8 +1,44 @@
+import { useState } from "react";
+import axios from "../../../axios";
 
-const Dependent=()=> {
+const Dependent=({toggleForm})=> {
+    const [aadhar, setaadhar]=useState('')
+    const [fname,setfname]=useState('');
+        const [lname,setlname]=useState('');
+        const [dob,setdob]=useState('');
+        const [phoneno,setphoneno]=useState('');
+        const [resident,setresident]=useState('');
+        const [genders,setgenders]=useState('F')
+        const enterdependent=async(e)=>{
+            e.preventDefault();
+            try{
+                const dependent={
+                        fname:fname,
+                        lname:lname,
+                        phone:phoneno,
+                        dob:dob,
+                        gender:genders,
+                        aadhar:aadhar,
+                        residentid:resident
+                }
+                const response = await axios.post('admin/dependent',dependent);
+                console.log(response.status);
+                setfname('');
+                setlname('');
+                setdob('');
+                setphoneno('');
+                setaadhar('');
+                setresident('');
+                setgenders('');
+                toggleForm(false);
+            }
+            catch(error){
+                console.log(error.message);
+            }
+        }
     return (
             <div className="flex justify-center box-border">
-                <form class="w-full max-w-lg mb-4 mt-4">
+                <form class="w-full max-w-lg mb-4 mt-4" onSubmit={enterdependent}>
                     <div class="flex flex-wrap -mx-3 mb-2"></div>
                     <div class="flex justify-center -mx-3 mb-2">
                         <div class="w-full md:w-1/2 px-3 mb-2 md:mb-0">
@@ -16,6 +52,9 @@ const Dependent=()=> {
                                 id="grid-first-name"
                                 type="text"
                                 placeholder="12 DIGITS AADHAR NO"
+                                value={aadhar}
+                        onChange = {(e)=>setaadhar(e.target.value)}
+
                             />
                         </div>
                         <div class="w-full md:w-1/2 px-3 mb-2 md:mb-0">
@@ -29,6 +68,8 @@ const Dependent=()=> {
                                 id="grid-first-name"
                                 type="text"
                                 placeholder="12 DIGITS AADHAR NO"
+                                value={resident}
+                        onChange = {(e)=>setresident(e.target.value)}
                             />
                         </div>
                         <div class="w-full md:w-1/2 px-3">
@@ -41,6 +82,8 @@ const Dependent=()=> {
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-last-name"
                                 type="text"
+                                value={fname}
+                        onChange = {(e)=>setfname(e.target.value)}
                                 placeholder="J"
                             />
                         </div>
@@ -55,6 +98,8 @@ const Dependent=()=> {
                                 id="grid-last-name"
                                 type="text"
                                 placeholder="Doe"
+                                value={lname}
+                        onChange = {(e)=>setlname(e.target.value)}
                             />
                         </div>
                     </div>
@@ -70,7 +115,9 @@ const Dependent=()=> {
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-city"
                                 type="date"
-                                placeholder="Albuquerque"
+                                placeholder="DOB"
+                                value={dob}
+                        onChange = {(e)=>setdob(e.target.value)}
                             />
                         </div>
                         <div class="w-full md:w-1/2 px-3">
@@ -84,6 +131,8 @@ const Dependent=()=> {
                                 id="grid-last-name"
                                 type="phone"
                                 placeholder="xxxxxxxxxx"
+                                value={phoneno}
+                        onChange = {(e)=>setphoneno(e.target.value)}
                             />
                         </div>
                         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -95,10 +144,11 @@ const Dependent=()=> {
                             <div class="relative">
                                 <select
                                     class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-state">
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Others</option>
+                                    id="grid-state" value={genders}
+                        onChange = {(e)=>setgenders(e.target.value)}>
+                                    <option>M</option>
+                                    <option>F</option>
+                                    <option>O</option>
                                 </select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                     <svg

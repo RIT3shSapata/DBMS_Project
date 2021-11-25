@@ -25,6 +25,20 @@ const Resident = () => {
   const [dependentinfo, setDependentinfo] = React.useState(false);
   const [serviceoption, setServiceOption] = React.useState(false);
   const [complaint, setComplaint] = React.useState(false);
+  const [givecomplaint, setgiveComplaint] = React.useState('');
+  const entercomplaint=async(e)=>{
+    e.preventDefault();
+    try {
+      const complaint={
+        residentid:'',
+        complain:givecomplaint
+      }
+      const response = await axios.post('resident/complaint',complaint);
+      console.log(response)
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
   useEffect(() => {
     const getServices = async()=>{
       try{
@@ -101,7 +115,7 @@ const Resident = () => {
     <div>
     <h1 className="text-2xl flex justify-center">File a complaint</h1>
     <div className="flex justify-center mt-5">
-        <form className="w-full max-w-lg">
+        <form className="w-full max-w-lg" onSubmit={entercomplaint}>
         <div className=" -mx-3 mb-2">
                 <div className="w-full">
                     <label
@@ -114,6 +128,8 @@ const Resident = () => {
                         id="grid-last-name"
                         type="text"
                         placeholder="Doe"
+                        value={complaint}
+                        onChange = {(e)=>setComplaint(e.target.value)}
                     />
                 </div>
             <br></br>

@@ -62,6 +62,24 @@ const availService = async (req, res) => {
         res.status(500).send();
     }
 };
+const Complaint = async (req, res) => {
+    try {
+        const {
+            residentid,
+            complain
+        } = req.body;
+        const complaintid = Math.floor(Math.random() * 10000000000);
+        await admin.query(
+            'insert into complaints values($1,$2,$3);',
+            [complaintid,residentid,complain]
+        );
+
+        res.send('Resident complaint received');
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
 const viewListOfServices = async (req, res) => {
     try {
         const services_info = await resident.query(
@@ -75,5 +93,5 @@ const viewListOfServices = async (req, res) => {
     }
 };
 module.exports = {
-    viewResidentInfo,viewDependentInfo,viewVisitorInfo,availService,viewListOfServices
+    viewResidentInfo,viewDependentInfo,viewVisitorInfo,availService,viewListOfServices,Complaint
 };

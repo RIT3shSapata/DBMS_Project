@@ -9,7 +9,8 @@ const {
     viewSecurity,
     viewServiceRequests,
     addFlat,
-    ResidentResidesinFlat
+    ResidentResidesinFlat,
+    addDependent
 } = require('../controllers/controller.admin');
 
 const router = require('express').Router();
@@ -18,6 +19,7 @@ router.post('/resident', addResident);
 router.post('/security', addSecurity);
 router.post('/service', addService);
 router.post('/employee', addEmployee);
+router.post('/dependent', addDependent);
 router.post('/flat', addFlat);
 router.post('/residentresidesin', ResidentResidesinFlat);
 router.get('/residentinfo', viewResidentInfo);
