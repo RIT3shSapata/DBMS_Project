@@ -29,6 +29,20 @@ const viewDependentInfo = async (req, res) => {
         res.status(500).send();
     }
 };
+const dependentCount = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const dependent_info = await resident.query(
+            'select count(*) from dependent where residentUID=$1;',
+            [id]
+        );
+        res.send(dependent_info['rows']);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
 const viewVisitorInfo = async (req, res) => {
     try {
         const { id } = req.params;
@@ -93,5 +107,5 @@ const viewListOfServices = async (req, res) => {
     }
 };
 module.exports = {
-    viewResidentInfo,viewDependentInfo,viewVisitorInfo,availService,viewListOfServices,Complaint
+    viewResidentInfo,viewDependentInfo,viewVisitorInfo,availService,viewListOfServices,Complaint,dependentCount
 };

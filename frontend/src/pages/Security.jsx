@@ -29,7 +29,7 @@ const Security = () => {
         }
     };
     const [visitorID, setvisitorID] = useState('');
-    const updatevisitordata = async () => {
+    const updatevisitordata = async (e) => {
         e.preventDefault();
         try {
             const updatevisitorobj = {
@@ -39,6 +39,7 @@ const Security = () => {
                 'security/security_visitor_update',
                 updatevisitorobj
             );
+            setvisitorID('')
         } catch (error) {
             console.log(error);
         }

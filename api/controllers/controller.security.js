@@ -39,7 +39,7 @@ const updateVisitor = async (req, res) => {
         const timeofexit = new Date();
 
         await security.query(
-            'update visitor set time_of_exit=$1 where visitorID=$2',
+            'update visitor_update set time_of_exit=$1 where visitorID=$2',
             [timeofexit, visitorid]
         );
 
