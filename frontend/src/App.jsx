@@ -12,7 +12,7 @@ function App() {
                 <h1 className="text-center text-3xl">
                     DBMS Project - Apna Ghar{' '}
                 </h1>
-                <Navbar />
+                {/* <Navbar /> */}
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/admin" element={<Admin />} />

@@ -62,7 +62,8 @@ function Admin() {
                             Enter Resident Info
                         </h1>
                         <div class="flex flex-wrap -mx-3 mb-6"></div>
-                        <New_resident></New_resident>
+                        <New_resident
+                            toggleForm={setResidentform}></New_resident>
                     </div>
                 ) : (
                     <div></div>
@@ -75,7 +76,7 @@ function Admin() {
                         <h1 className="text-2xl flex justify-center ">
                             Enter Dependent's Info
                         </h1>
-                        <Dependent></Dependent>
+                        <Dependent toggleForm={setDependentinfo}></Dependent>
                     </div>
                 ) : (
                     <div></div>
@@ -98,19 +99,17 @@ function Admin() {
             </div>
             <div class="flex flex-wrap -mx-3 mb-6"></div>
             <div>
-                {employee ? (
-                    <div>
-                        <div class="flex flex-wrap -mx-3 mb-6"></div>
-                        <div>
-                            <h1 className="text-2xl flex justify-center ">
-                                Enter Employee
-                            </h1>
-                            <Employee></Employee>
-                        </div>
-                    </div>
-                ) : (
-                    <div></div>
-                )}
+                <h1 className="text-2xl flex justify-center ">
+                    Enter Security
+                </h1>
+                <Security toggleForm={setSecurityform}></Security>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-6"></div>
+            <div>
+                <h1 className="text-2xl flex justify-center ">
+                    Enter Employee
+                </h1>
+                <Employee toggleForm={setEmployeeform}></Employee>
             </div>
             <div>
                 {service ? (
@@ -118,51 +117,8 @@ function Admin() {
                         <h1 className="text-2xl flex justify-center ">
                             Enter a new service
                         </h1>
-                        <Service></Service>
+                        <Service toggleForm={setServiceform}></Service>
                     </div>
-                ) : (
-                    <div></div>
-                )}
-            </div>
-            <div>
-                <Stack
-                    spacing={2}
-                    direction="row"
-                    className="justify-around m-2">
-                    <Button
-                        variant="outlined"
-                        onClick={() => setresideflatinfo(!resideflatinfo)}>
-                        View Residents And Flat Information
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        onClick={() => setservicereqtable(!servicereqtable)}>
-                        View Resident's service requests
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        onClick={() => setemployeelist(!employeelist)}>
-                        View Employees{' '}
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        onClick={() => setsecuritytable(!securitytable)}>
-                        View Security Details{' '}
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        onClick={() => setComplaintstable(!complaintstable)}>
-                        View Complaints{' '}
-                    </Button>
-                </Stack>
-            </div>
-            <div class="flex flex-wrap -mx-3 mb-6"></div>
-            <div>
-                {resideflatinfo ? <ViewResidents></ViewResidents> : <div></div>}
-            </div>
-            <div>
-                {servicereqtable ? (
-                    <ServicesRequested></ServicesRequested>
                 ) : (
                     <div></div>
                 )}

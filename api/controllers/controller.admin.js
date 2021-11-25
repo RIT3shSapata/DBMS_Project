@@ -37,7 +37,7 @@ const addResident = async (req, res) => {
 
 const addSecurity = async (req, res) => {
     try {
-        const { fname, lname, phone, doj, shift = 'day' } = req.body;
+        const { fname, lname, phone, doj, shift = 'day', flatid } = req.body;
 
         const sql_doj = new Date(doj)
             .toISOString()
@@ -58,7 +58,11 @@ const addSecurity = async (req, res) => {
         await admin.query('insert into auth values($1,$2,$3);', [
             securityID,
             'password3',
-            'resident',
+            'security',
+        ]);
+        await admin.query('insert into flat_has_security values($1,$2);', [
+            flatid,
+            securityID,
         ]);
         res.send('Recieved the body');
     } catch (e) {
@@ -208,6 +212,7 @@ const ResidentResidesinFlat = async (req, res) => {
         res.status(500).send();
     }
 };
+
 module.exports = {
     addResident,
     addSecurity,
