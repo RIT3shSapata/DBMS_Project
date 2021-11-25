@@ -3,6 +3,7 @@ const {
     addSecurity,
     addService,
     addEmployee,
+    addDependent,
     viewResidentInfo,
     viewComplaints,
     viewEmployees,
@@ -10,7 +11,6 @@ const {
     viewServiceRequests,
     addFlat,
     ResidentResidesinFlat,
-    addDependent
 } = require('../controllers/controller.admin');
 
 const router = require('express').Router();

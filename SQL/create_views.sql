@@ -2,7 +2,7 @@
 
 -- Creating Views for Resident
 create view resident_display 
-as select fname,lname,phone,gender 
+as select fname,lname,phone,gender,Aadhar
 from resident;
 
 create view resident_update
@@ -63,7 +63,7 @@ as select *
 from visitor;
 
 create view visitor_insert 
-as select visitorID,flatID,fname,lname,purpose,phonenumber,time_of_entry 
+as select flatID,visitorID,fname,lname,purpose,phonenumber,time_of_entry 
 from visitor;
 
 create view visitor_update 

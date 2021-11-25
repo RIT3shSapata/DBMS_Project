@@ -2,7 +2,11 @@ module.exports = {
     purge: [],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                bg1: '#EDF2F7',
+            },
+        },
     },
     variants: {
         extend: {},

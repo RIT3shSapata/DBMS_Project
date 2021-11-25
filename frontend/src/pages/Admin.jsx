@@ -25,8 +25,10 @@ function Admin() {
     const [complaintstable,setComplaintstable] = useState(false);
     return (
         <div>
+        <div class="flex flex-wrap -mx-3 mb-6"></div>
             <h1 className="text-2xl flex justify-center ">Admin Page</h1>
-            <SignIn></SignIn>
+            <div class="flex flex-wrap -mx-3 mb-6"></div>
+            {/* <SignIn></SignIn> */}
             <Stack spacing={2} direction="row" className='justify-around'>
                 <Button variant="outlined" onClick={() => setResidentform(!residentform)}>Enter Resident Information</Button>
                 <Button variant="outlined" onClick={() => setDependentinfo(!dependentinfo)}>Enter Dependent's Information</Button>
