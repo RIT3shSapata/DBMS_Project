@@ -1,25 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from '../../../axios';
 
-export default function Security() {
+export default function Security({toggleForm}) {
+        const [fname,setfname]=useState('');
+        const [lname,setlname]=useState('');
+        const [doj,setdoj]=useState('');
+        const [phoneno,setphoneno]=useState('');
+        const [shift,setshift]=useState('day');
+        const [flatid,setflatid]=useState('');
+        const entersecurity=async(e)=>{
+            e.preventDefault();
+            try{
+                const security={
+                        fname:fname,
+                        lname:lname,
+                        phone:phoneno,
+                        doj:doj,
+                        shift:shift,
+                        flatid:flatid,
+                }
+                const response = await axios.post('admin/security',security);
+                console.log(response.status);
+                setfname('');
+                setlname('');
+                setdoj('');
+                setphoneno('');
+                setshift('day');
+                setflatid('');
+                toggleForm(false);
+            }
+            catch(error){
+                console.log(error.message);
+            }
+        }
     return (
         <div>
             <div className="flex justify-center box-border">
-                <form class="w-full max-w-lg">
+                <form class="w-full max-w-lg" onSubmit={entersecurity}>
                     <div class="flex flex-wrap -mx-3 mb-6"></div>
                     <div class="flex justify-center -mx-3 mb-2">
-                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-first-name">
-                                securityID
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                id="grid-first-name"
-                                type="text"
-                                placeholder="10 Digit NO"
-                            />
-                        </div>
                         <div class="w-full md:w-1/2 px-3">
                             <label
                                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -31,6 +50,8 @@ export default function Security() {
                                 id="grid-last-name"
                                 type="text"
                                 placeholder="J"
+                                value={fname}
+                        onChange = {(e)=>setfname(e.target.value)}
                             />
                         </div>
                         <div class="w-full md:w-1/2 px-3">
@@ -44,6 +65,8 @@ export default function Security() {
                                 id="grid-last-name"
                                 type="text"
                                 placeholder="Doe"
+                                value={lname}
+                        onChange = {(e)=>setlname(e.target.value)}
                             />
                         </div>
                     </div>
@@ -52,12 +75,14 @@ export default function Security() {
                             <label
                                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                 for="grid-city">
-                                Date of Birth
+                                Date of Joining
                             </label>
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-city"
                                 type="date"
+                                value={doj}
+                        onChange = {(e)=>setdoj(e.target.value)}
                             />
                         </div>
                         <div class="w-full md:w-1/2 px-3">
@@ -71,6 +96,8 @@ export default function Security() {
                                 id="grid-last-name"
                                 type="phone"
                                 placeholder="xxxxxxxxxx"
+                                value={phoneno}
+                        onChange = {(e)=>setphoneno(e.target.value)}
                             />
                         </div>
                         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -82,7 +109,8 @@ export default function Security() {
                             <div class="relative">
                                 <select
                                     class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="grid-state">
+                                    id="grid-state" value={shift}
+                        onChange = {(e)=>setshift(e.target.value)}>
                                     <option>Day</option>
                                     <option>Night</option>
                                 </select>
@@ -95,6 +123,21 @@ export default function Security() {
                                     </svg>
                                 </div>
                             </div>
+                        </div>
+                        <div class="w-full md:w-1/2 px-3">
+                            <label
+                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                for="grid-last-name">
+                                FlatID
+                            </label>
+                            <input
+                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                id="grid-last-name"
+                                type="text"
+                                placeholder="flatID"
+                                value={flatid}
+                        onChange = {(e)=>setflatid(e.target.value)}
+                            />
                         </div>
                     </div>
 

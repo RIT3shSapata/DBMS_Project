@@ -41,7 +41,7 @@ function Admin() {
                 Enter Resident Info
             </h1>
             <div class="flex flex-wrap -mx-3 mb-6"></div>
-            <New_resident></New_resident>
+            <New_resident toggleForm={setResidentform}></New_resident>
             </div>:<div></div>}
             </div>
             <div class="flex flex-wrap -mx-3 mb-6"></div>
@@ -50,14 +50,14 @@ function Admin() {
             <h1 className="text-2xl flex justify-center ">
                 Enter Dependent's Info
             </h1>
-            <Dependent></Dependent></div>:<div></div>}
+            <Dependent toggleForm={setDependentinfo}></Dependent></div>:<div></div>}
             </div>
             <div>
             {security?<div>
             <div class="flex flex-wrap -mx-3 mb-6"></div>
             <div>
             <h1 className="text-2xl flex justify-center ">Enter Security</h1>
-            <Security></Security></div></div>:<div></div>}
+            <Security toggleForm={setSecurityform}></Security></div></div>:<div></div>}
             </div>
             <div class="flex flex-wrap -mx-3 mb-6"></div>
             <div>{employee?<div>
@@ -66,7 +66,7 @@ function Admin() {
                     <h1 className="text-2xl flex justify-center ">
                         Enter Employee
                     </h1>
-                    <Employee></Employee>  
+                    <Employee toggleForm={setEmployeeform}></Employee>  
             </div>
             </div>:<div></div>}</div>
             <div>
@@ -74,7 +74,7 @@ function Admin() {
             <h1 className="text-2xl flex justify-center ">
                     Enter a new service
             </h1>
-            <Service></Service>
+            <Service toggleForm={setServiceform}></Service>
             </div>:<div></div>}
             </div>
             <div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "../../../axios";
 
-const New_resident=()=>{
+const New_resident=({toggleForm})=>{
     const [aadhar,setaadhar]=useState('');
     const [fname,setfname]=useState('');
     const [lname,setlname]=useState('');
@@ -49,6 +49,7 @@ const New_resident=()=>{
             setpetinfo('no pet');
             setflatid('');
             setrent_owned('rent');
+            toggleForm(false);
         }
         catch(error){
             console.log(error.message);
