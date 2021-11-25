@@ -1,12 +1,29 @@
 import { useState } from 'react';
+import axios from '../axios';
+import { Navigate } from 'react-router-dom';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const login = (e) => {
+
+    const [loggedin, setLoggedin] = useState(false);
+    const [user, setUser] = useState('');
+    const login = async (e) => {
         e.preventDefault();
         console.log(username, password);
+        const auth = { username, password };
+        try {
+            const response = await axios.post('login', auth);
+            console.log(response.data);
+            setUser(response.data);
+            setLoggedin(true);
+        } catch (error) {
+            console.log(error);
+        }
     };
+    if (loggedin) {
+        return <Navigate to={user} />;
+    }
     return (
         <div className="flex flex-grow justify-center  p-5 min-h-0 bg-bg1 ">
             <div className="w-full max-w-xs">

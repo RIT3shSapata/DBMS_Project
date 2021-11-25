@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { admin } = require('../db');
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
     const { username, password } = req.body;
     console.log(username, password);
 
