@@ -44,6 +44,8 @@ const Security = () => {
         }
     };
     const [flatid, setflatID] = useState('');
+    const [fname, setfname] = useState('');
+    const [Lname, setlname] = useState('');
     const viewResidentName = async (e) => {
         e.preventDefault();
         try {
@@ -66,7 +68,7 @@ const Security = () => {
                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label
                                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-first-name">
+                                htmlFor="grid-first-name">
                                 Flat ID
                             </label>
                             <input
@@ -82,7 +84,7 @@ const Security = () => {
                         <div className="w-full md:w-1/2 px-3">
                             <label
                                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
+                                htmlFor="grid-last-name">
                                 First Name
                             </label>
                             <input
@@ -98,7 +100,7 @@ const Security = () => {
                         <div className="w-full md:w-1/2 px-3">
                             <label
                                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
+                                htmlFor="grid-last-name">
                                 Last Name
                             </label>
                             <input
@@ -117,7 +119,7 @@ const Security = () => {
                         <div className="w-full md:w-1/2 px-3">
                             <label
                                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
+                                htmlFor="grid-last-name">
                                 Purpose
                             </label>
                             <input
@@ -133,7 +135,7 @@ const Security = () => {
                         <div className="w-full md:w-1/2 px-3">
                             <label
                                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
+                                htmlFor="grid-last-name">
                                 Phone Number
                             </label>
                             <input
@@ -161,7 +163,7 @@ const Security = () => {
                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label
                                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-first-name">
+                                htmlFor="grid-first-name">
                                 Flat Number
                             </label>
                             <input
@@ -187,7 +189,7 @@ const Security = () => {
                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label
                                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-first-name">
+                                htmlFor="grid-first-name">
                                 Visitor ID
                             </label>
                             <input

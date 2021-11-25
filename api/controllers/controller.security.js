@@ -5,8 +5,9 @@ const addVisitor = async (req, res) => {
 
         const timeofentry = new Date();
 
+        const visitorid = Math.floor(Math.random() * 10000000000);
         await security.query(
-            'insert into visitor values($1,$2,$3,$4,$5,$6,$7);',
+            'insert into visitor_insert values($1,$2,$3,$4,$5,$6,$7);',
             [flatid, visitorid, fname, lname, purpose, phone, timeofentry]
         );
 
@@ -21,7 +22,7 @@ const viewResidentInfo_Security = async (req, res) => {
         const { Fid } = req.params;
         console.log('here');
         const resident_info = await security.query(
-            'select fname,lname from resident_display where residentUID=(select residentUID from resident_residesin_flat where flatid=$1);',
+            'select fname,lname from resident_display where Aadhar=(select residentUID from resident_residesin_flat where flatid=$1);',
             [Fid]
         );
         res.send(resident_info['rows'][0]);
