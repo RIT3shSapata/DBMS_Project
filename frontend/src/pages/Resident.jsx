@@ -38,10 +38,11 @@ const Resident = () => {
     e.preventDefault();
     try {
       const complaint={
-        residentid:'',
+        residentid:user.username,
         complain:givecomplaint
       }
       const response = await axios.post('resident/complaint',complaint);
+      setgiveComplaint('')
       console.log(response)
     } catch (error) {
       console.error(error.message);
@@ -151,8 +152,8 @@ const Resident = () => {
                         id="grid-last-name"
                         type="text"
                         placeholder="Doe"
-                        value={complaint}
-                        onChange = {(e)=>setComplaint(e.target.value)}
+                        value={givecomplaint}
+                        onChange = {(e)=>setgiveComplaint(e.target.value)}
                     />
                 </div>
             <br></br>

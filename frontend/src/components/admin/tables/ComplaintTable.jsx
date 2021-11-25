@@ -13,6 +13,7 @@ export default function ComplaintTable() {
     const getcomplaintsdata=async()=>{
       try{
         const response = await axios.get('/admin/complaint_info');
+        console.log(response.data);
         setcomplainttable(response.data);
         }
       catch(e){
