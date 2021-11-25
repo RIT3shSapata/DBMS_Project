@@ -66,7 +66,16 @@ const addSecurity = async (req, res) => {
         res.status(500).send();
     }
 };
-
+const addFlat = async (req, res) => {
+    try {
+        const { flatid, nobhk } = req.body;
+        await admin.query('insert into flat values($1, $2);', [flatid, nobhk]);
+        res.status(200).send();
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
 const addService = async (req, res) => {
     try {
         const { cost, type } = req.body;
@@ -186,6 +195,19 @@ const viewServiceRequests = async (req, res) => {
         res.status(500).send();
     }
 };
+const ResidentResidesinFlat = async (req, res) => {
+    try {
+        const { residentid, flatid, rent_owned } = req.body;
+        await admin.query(
+            'insert into resident_residesin_flat values($1, $2,$3);',
+            [residentid, flatid, rent_owned]
+        );
+        res.status(200).send();
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
+    }
+};
 module.exports = {
     addResident,
     addSecurity,
@@ -196,4 +218,6 @@ module.exports = {
     viewEmployees,
     viewSecurity,
     viewServiceRequests,
+    addFlat,
+    ResidentResidesinFlat,
 };
