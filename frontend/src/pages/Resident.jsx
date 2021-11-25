@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -16,16 +16,24 @@ import Dependent from "../components/resident/table/Dependent";
 import Visitor from "../components/resident/table/Visitor";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import {useSelector} from 'react-redux'
 
   
 const Resident = () => {
-  const [Service, setService] = React.useState({});
-  const [services, setServices] = React.useState([]);
-  const [viewVisitors, setViewVisitors] = React.useState(false);
-  const [dependentinfo, setDependentinfo] = React.useState(false);
-  const [serviceoption, setServiceOption] = React.useState(false);
-  const [complaint, setComplaint] = React.useState(false);
-  const [givecomplaint, setgiveComplaint] = React.useState('');
+
+  const [fname, setFname] = useState('')
+  const [lname, setLname] = useState('')
+  const [phone, setPhone] = useState('')
+  
+  const [Service, setService] = useState({});
+  const [services, setServices] = useState([]);
+  const [viewVisitors, setViewVisitors] = useState(false);
+  const [dependentinfo, setDependentinfo] = useState(false);
+  const [serviceoption, setServiceOption] = useState(false);
+  const [complaint, setComplaint] = useState(false);
+  const [givecomplaint, setgiveComplaint] = useState('');
+
+  const {user} = useSelector((state)=>state.auth)
   const entercomplaint=async(e)=>{
     e.preventDefault();
     try {
@@ -43,14 +51,29 @@ const Resident = () => {
     const getServices = async()=>{
       try{
 
-    const response = await axios.get('resident/viewservices/763676231429');
+    const response = await axios.get(`resident/viewservices/${user.username}`);
     setServices(response.data);
       }catch(e){
         console.log(e)
       }
     }
+
+    const getResidentDetails = async()=>{
+      try{
+        const response = await axios.get(`resident/${user.username}`);
+        console.log(response.data);
+        setFname(response.data.fname)
+        setLname(response.data.lname)
+        setPhone(response.data.phone)
+      }catch(e){
+        console.log(e)
+      }
+    }
+    if(user){
     getServices()
-  }, [])
+    getResidentDetails();
+    }
+  }, [user])
 
   const availService = async(e)=>{
     e.preventDefault();
@@ -73,9 +96,9 @@ const Resident = () => {
     return (
         <div>
             <h1 className="text-2xl flex justify-center">Resident Page</h1>
-            <SignIn></SignIn>
-            <h1 className="text-2xl flex justify-center">Hello first_name last_name</h1>
-            <h1 className="flex justify-center mb-8">phone number</h1>
+            {/* <SignIn></SignIn> */}
+            <h1 className="text-2xl flex justify-center">Hello {fname} {lname}</h1>
+            <h1 className="flex justify-center mb-8">{phone}</h1>
             <Stack spacing={2} direction="row" className='justify-around m-5'>
                 <Button variant="outlined" onClick={() => setDependentinfo(!dependentinfo)}>View Dependents Information</Button>
                 <Button variant="outlined" onClick={() => setViewVisitors(!viewVisitors)}>View Visitor Information</Button>

@@ -5,8 +5,8 @@ const addVisitor = async (req, res) => {
 
         const timeofentry = new Date();
 
-            await security.query(
-           'insert into visitor values($1,$2,$3,$4,$5,$6,$7);',
+        await security.query(
+            'insert into visitor values($1,$2,$3,$4,$5,$6,$7);',
             [flatid, visitorid, fname, lname, purpose, phone, timeofentry]
         );
 

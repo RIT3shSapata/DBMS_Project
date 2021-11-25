@@ -22,6 +22,12 @@ const addResident = async (req, res) => {
             [aadhar, fname, lname, sql_dob, phone, gender, pet_info]
         );
 
+        await admin.query('insert into auth values($1,$2,$3);', [
+            aadhar,
+            'password2',
+            'resident',
+        ]);
+
         res.send('Recieved the body');
     } catch (e) {
         console.log(e);
@@ -31,7 +37,7 @@ const addResident = async (req, res) => {
 
 const addSecurity = async (req, res) => {
     try {
-        const { fname, lname, phone, doj, shift = 'day',flatid } = req.body;
+        const { fname, lname, phone, doj, shift = 'day', flatid } = req.body;
 
         const sql_doj = new Date(doj)
             .toISOString()
@@ -48,9 +54,15 @@ const addSecurity = async (req, res) => {
             sql_doj,
             shift,
         ]);
+
+        await admin.query('insert into auth values($1,$2,$3);', [
+            securityID,
+            'password3',
+            'security',
+        ]);
         await admin.query('insert into flat_has_security values($1,$2);', [
             flatid,
-            securityID
+            securityID,
         ]);
         res.send('Recieved the body');
     } catch (e) {
@@ -58,17 +70,16 @@ const addSecurity = async (req, res) => {
         res.status(500).send();
     }
 };
-const addFlat= async (req, res) => {
-    try{
-        const {flatid,nobhk}=req.body;
-        await admin.query('insert into flat values($1, $2);',[flatid,nobhk])
+const addFlat = async (req, res) => {
+    try {
+        const { flatid, nobhk } = req.body;
+        await admin.query('insert into flat values($1, $2);', [flatid, nobhk]);
         res.status(200).send();
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e);
         res.status(500).send();
     }
-}
+};
 const addService = async (req, res) => {
     try {
         const { cost, type } = req.body;
@@ -152,7 +163,7 @@ const viewComplaints = async (req, res) => {
         res.status(500).send();
     }
 };
-const viewEmployees= async (req, res) => {
+const viewEmployees = async (req, res) => {
     try {
         const employee_info = await admin.query(
             'select employeeID,Fname,Lname,phone,doj,shift,serviceid,salary from employee;'
@@ -164,7 +175,7 @@ const viewEmployees= async (req, res) => {
         res.status(500).send();
     }
 };
-const viewSecurity= async (req, res) => {
+const viewSecurity = async (req, res) => {
     try {
         const security_info = await admin.query(
             'select securityID,Fname,Lname,phone,doj,shift from security;'
@@ -176,7 +187,7 @@ const viewSecurity= async (req, res) => {
         res.status(500).send();
     }
 };
-const viewServiceRequests= async (req, res) => {
+const viewServiceRequests = async (req, res) => {
     try {
         const servicerequest_info = await admin.query(
             'select r.Aadhar,r.Fname,r.Lname,ras.serviceid,s.type,ras.serviceTime,f.flatid from resident as r, resident_avails_services as ras, services as s,resident_residesin_flat as f where r.Aadhar=ras.ResidentUID and s.serviceid=ras.serviceid and r.aadhar=f.residentuid'
@@ -189,12 +200,14 @@ const viewServiceRequests= async (req, res) => {
     }
 };
 const ResidentResidesinFlat = async (req, res) => {
-    try{
-        const {residentid,flatid,rent_owned}=req.body;
-        await admin.query('insert into resident_residesin_flat values($1, $2,$3);',[residentid,flatid,rent_owned])
+    try {
+        const { residentid, flatid, rent_owned } = req.body;
+        await admin.query(
+            'insert into resident_residesin_flat values($1, $2,$3);',
+            [residentid, flatid, rent_owned]
+        );
         res.status(200).send();
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e);
         res.status(500).send();
     }
