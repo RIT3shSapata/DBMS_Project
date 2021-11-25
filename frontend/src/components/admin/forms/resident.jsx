@@ -1,8 +1,63 @@
+import { useState } from "react";
+import axios from "../../../axios";
+
 const New_resident=()=>{
+    const [aadhar,setaadhar]=useState('');
+    const [fname,setfname]=useState('');
+    const [lname,setlname]=useState('');
+    const [dob,setdob]=useState('');
+    const [phoneno,setphoneno]=useState('');
+    const [petinfo,setpetinfo]=useState('no pet');
+    const [flatid,setflatid]=useState('');
+    const [nobhk,setnobhk]=useState(0);
+    const [rent_owned,setrent_owned]=useState('rent');
+    const [genders,setgenders]=useState('FF');
+    const enterresident=async(e)=>{
+        e.preventDefault();
+        try{
+            const resident={
+                    aadhar:aadhar,
+                    fname:fname,
+                    lname:lname,
+                    dob:dob,
+                    phone:phoneno,
+                    gender:genders,
+                    petinfo:petinfo,
+            }
+            const flat={
+                flatid:flatid,
+	            nobhk:nobhk
+            }
+            const residentresidesin={
+                "residentid":aadhar,
+                "flatid":flatid,
+                "rent_owned":rent_owned
+            }
+            const response = await axios.post('admin/resident',resident);
+            const response2=await axios.post('admin/flat',flat);
+            const response3=await axios.post('admin/residentresidesin',residentresidesin);
+            console.log(response2.status);
+            console.log(response.data);
+            console.log(response3.status);
+            setaadhar('');
+            setfname('');
+            setlname('');
+            setdob('');
+            setphoneno('');
+            setgenders('F');
+            setnobhk('');
+            setpetinfo('no pet');
+            setflatid('');
+            setrent_owned('rent');
+        }
+        catch(error){
+            console.log(error.message);
+        }
+    }
     return(
         
         <div className="flex justify-center box-border">
-        <form class="w-full max-w-lg">
+        <form class="w-full max-w-lg" onSubmit={enterresident}>
         <div class="flex flex-wrap -mx-3 mb-2">
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                     <label
@@ -14,7 +69,9 @@ const New_resident=()=>{
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                         id="grid-first-name"
                         type="text"
+                        value={aadhar}
                         placeholder="12 DIGITS AADHAR NO"
+                        onChange = {(e)=>setaadhar(e.target.value)}
                     />
                 </div>
                 <div class="w-full md:w-1/3 px-3">
@@ -27,7 +84,9 @@ const New_resident=()=>{
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="grid-last-name"
                         type="text"
+                        value={fname}
                         placeholder="Doe"
+                        onChange = {(e)=>setfname(e.target.value)}
                     />
                 </div>
                 <div class="w-full md:w-1/3 px-3">
@@ -40,7 +99,9 @@ const New_resident=()=>{
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="grid-last-name"
                         type="text"
+                        value={lname}
                         placeholder="Doe"
+                        onChange = {(e)=>setlname(e.target.value)}
                     />
                 </div>
             </div>
@@ -55,7 +116,9 @@ const New_resident=()=>{
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="grid-city"
                         type="date"
+                        value={dob}
                         placeholder="Albuquerque"
+                        onChange = {(e)=>setdob(e.target.value)}
                     />
                 </div>
                 <div class="w-full md:w-1/2 px-3">
@@ -68,7 +131,9 @@ const New_resident=()=>{
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="grid-last-name"
                         type="phone"
+                        value={phoneno}
                         placeholder="xxxxxxxxxx"
+                        onChange = {(e)=>setphoneno(e.target.value)}
                     />
                 </div>
                 <div class="w-full md:w-1/2 px-3">
@@ -81,7 +146,9 @@ const New_resident=()=>{
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="grid-last-name"
                         type="text"
+                        value={flatid}
                         placeholder="varchar(10)"
+                        onChange = {(e)=>setflatid(e.target.value)}
                     />
                 </div>
                 <div class="w-full md:w-1/2 px-3">
@@ -95,6 +162,8 @@ const New_resident=()=>{
                         id="grid-last-name"
                         type="number"
                         placeholder="2"
+                        value={nobhk}
+                        onChange = {(e)=>setnobhk(e.target.value)}
                     />
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-6"></div>
@@ -107,9 +176,9 @@ const New_resident=()=>{
                     <div class="relative">
                         <select
                             class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="grid-state">
-                            <option>Rented</option>
-                            <option>Owned</option>
+                            id="grid-state" value={rent_owned} onChange = {(e)=>setrent_owned(e.target.value)}>
+                            <option>Rent</option>
+                            <option>Own</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg
@@ -129,8 +198,8 @@ const New_resident=()=>{
                     </label>
                     <div class="relative">
                         <select
-                            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="grid-state">
+                            value={petinfo} class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            id="grid-state" onChange = {(e)=>setpetinfo(e.target.value)}>
                             <option>No pet</option>
                             <option>Cat</option>
                             <option>Dog</option>
@@ -155,7 +224,8 @@ const New_resident=()=>{
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="grid-zip"
                         type="text"
-                        placeholder=""
+                        value={genders}
+                        placeholder="" onChange = {(e)=>setgenders(e.target.value)}
                     />
                 </div>
             </div>
